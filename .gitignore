@@ -1,0 +1,28 @@
+# Ignore all 'heavy-duty' folders
+Animations/*
+Characters/*
+Editor/*
+Downloaded Assets/*
+My Assets/*
+Enemy/*
+Events/*
+Material/*
+Models/*
+New Input System Sample/*
+Player/*
+Resources/*
+Samples/*
+Scenes/*
+Prefabs/*
+Terrain Data/*
+TextMesh Pro/*
+Textures/*
+Timelines/*
+
+# Ignore meta files
+*.meta
+
+# Ignore asset files
+*.asset
+*.mixer
+*.lighting

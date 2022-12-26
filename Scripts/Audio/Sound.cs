@@ -58,10 +58,82 @@ public class Sound
     /// <summary>
     ///     Get audio name
     /// </summary>
-    /// <returns>audioName</returns>
+    /// <returns>
+    ///     Audio name in string
+    /// </returns>
     public string GetAudioName()
     {
         return audioName;
+    }
+
+    /// <summary>
+    ///     Get the volume of the audio source
+    /// </summary>
+    /// <returns>
+    ///     Audio volume in float
+    /// </returns>
+    public float GetAudioVolume()
+    {
+        return audioSource.volume;
+    }
+
+    /// <summary>
+    ///     Get the pitch of the audio source
+    /// </summary>
+    /// <returns>
+    ///     Audio pitch in float
+    /// </returns>
+    public float GetAudioPitch()
+    {
+        return audioSource.pitch;
+    }
+
+    /// <summary>
+    ///     Get the property of the sound whether the audio source is playing random clips
+    /// </summary>
+    /// <returns>
+    ///     True if audio is to play random clips
+    ///     False otherwise
+    /// </returns>
+    public bool GetBoolToPlayRandomClip()
+    {
+        return toPlayRandomClip;
+    }
+
+    /// <summary>
+    ///     Get the property of audio source whether it is set to play on loop
+    /// </summary>
+    /// <returns>
+    ///     True if audio is to play on loop
+    ///     False otherwise
+    /// </returns>
+    public bool GetBoolIsAudioLooping()
+    {
+        return audioSource.loop;
+    }
+
+    /// <summary>
+    ///     Get the property from audio source whether it is set to play on awake
+    /// </summary>
+    /// <returns>
+    ///     True if audio is to play on awake
+    ///     False otherwise
+    /// </returns>
+    public bool GetBoolToPlayOnAwake()
+    {
+        return audioSource.playOnAwake;
+    }
+
+    /// <summary>
+    ///     Get whether the audio source is currently playing
+    /// </summary>
+    /// <returns>
+    ///     True if audio is playing sound
+    ///     False otherwise
+    /// </returns>
+    public bool GetBoolIsAudioPlaying()
+    {
+        return audioSource.isPlaying;
     }
     #endregion
 
@@ -79,8 +151,8 @@ public class Sound
         InitAudioPitch();
         InitAudioLooping();
         InitAudioMixerGroup();
-
-        if (toPlayOnAwake) PlaySound();
+        InitAudioClip();
+        InitPlayOnAwake();
     }
 
     /// <summary>
@@ -88,20 +160,14 @@ public class Sound
     /// </summary>
     public void PlaySound()
     {
-        // Set audio clip
-        int clipIndex = 0;
-        if (toPlayRandomClip)
-        {
-            clipIndex = UnityEngine.Random.Range(0, audioClips.Length);
-        }
-
-        audioSource.clip = audioClips[clipIndex];
-
         // Set audio volume
         if (audioVolume < 1.01f)
         {
             audioSource.volume = audioVolume;
         }
+
+        // Initialize random clip again on PlaySound function call
+        InitAudioClip();
 
         audioSource.Play();
     }
@@ -173,6 +239,30 @@ public class Sound
     private void InitAudioLooping()
     {
         audioSource.loop = isAudioLooping;
+    }
+
+    /// <summary>
+    ///     Sets whether audio starts playing on awake
+    /// </summary>
+    private void InitPlayOnAwake()
+    {
+        audioSource.playOnAwake = toPlayOnAwake;
+        if (toPlayOnAwake) PlaySound();
+    }
+
+    /// <summary>
+    ///     Sets the audio clip
+    /// </summary>
+    private void InitAudioClip()
+    {
+        // Set audio clip
+        int clipIndex = 0;
+        if (toPlayRandomClip)
+        {
+            clipIndex = UnityEngine.Random.Range(0, audioClips.Length);
+        }
+
+        audioSource.clip = audioClips[clipIndex];
     }
     #endregion
 }

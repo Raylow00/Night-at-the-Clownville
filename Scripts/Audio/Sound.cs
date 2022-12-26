@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 /// <summary>
 ///     Enumeration for the types of audio mixer group used
 /// </summary>
-enum MixerGroup
+public enum MixerGroup
 {
     MASTER,
     MUSIC,
@@ -15,42 +15,47 @@ enum MixerGroup
 /// <summary>
 ///     Sound class that encompasses properties of a sound
 /// </summary>
-[System.Serializable]
 public class Sound
 {
     #region Private Fields
-    [SerializeField] private string audioName;
+    private string audioName;
 
-    [SerializeField] private AudioSettingsScriptableObject audioSettingsSO;
-    [SerializeField] private MixerGroup mixerGroup;
+    private MixerGroup mixerGroup;
     private AudioSource audioSource;
-    [SerializeField] private AudioMixerGroup audioMixerGroup;
-    [SerializeField] private AudioClip[] audioClips;
-    
-    [Range(0f, 1.01f)]
-    [Tooltip("Setting audio volume to 1.01f forces it to use the volume from AudioSettingsSO")]
-    [SerializeField] private float audioVolume;
+    private AudioMixerGroup audioMixerGroup;
+    private AudioClip[] audioClips;
 
-    [Range(0.1f, 1f)]
-    [SerializeField] private float audioPitch;
+    private float audioVolume = 0.5f;
+    private float audioPitch = 0.5f;
 
-    [SerializeField] private bool toPlayRandomClip;
-    [SerializeField] private bool isAudioLooping;
-    [SerializeField] private bool toPlayOnAwake;
+    private bool toPlayRandomClip = false;
+    private bool isAudioLooping = false;
+    private bool toPlayOnAwake = false;
     #endregion
 
     #region Constructor
     /// <summary>
-    ///     Constructor
+    ///     Initialize each sound with their respective settings in the Awake function
+    ///     in volume, pitch, audio mixer group and whether it is looping
+    ///     If toPlayOnAwake is checked, play sound
     /// </summary>
-    /// <param name="arg_audioSource">Audio source created at runtime for each sound</param>
-    public Sound(AudioSource arg_audioSource)
+    /// <param name="arg_audioSource"></param>
+    /// /// <param name="arg_audioSettingsSO"></param>
+    public Sound(AudioSource arg_audioSource, 
+                 AudioSettingsScriptableObject arg_audioSettingsSO,
+                 AudioMixerGroup arg_audioMixerGroup,
+                 MixerGroup arg_mixerGroup,
+                 float arg_audioVolume,
+                 float arg_audioPitch,
+                 bool arg_isAudioLooping,
+                 bool arg_toPlayOnAwake)
     {
-        InitAudioSource(arg_audioSource);
-        InitAudioVolume();
-        InitAudioPitch();
-        InitAudioLooping();
-        InitAudioMixerGroup();
+        SetAudioSource(arg_audioSource);
+        SetAudioVolume(arg_audioVolume, arg_audioSettingsSO);
+        SetAudioMixerGroup(arg_audioMixerGroup, arg_mixerGroup);
+        SetAudioPitch(arg_audioPitch);
+        SetAudioLooping(arg_isAudioLooping);
+        SetPlayOnAwake(arg_toPlayOnAwake);
     }
     #endregion
 
@@ -86,18 +91,6 @@ public class Sound
     public float GetAudioPitch()
     {
         return audioSource.pitch;
-    }
-
-    /// <summary>
-    ///     Get the property of the sound whether the audio source is playing random clips
-    /// </summary>
-    /// <returns>
-    ///     True if audio is to play random clips
-    ///     False otherwise
-    /// </returns>
-    public bool GetBoolToPlayRandomClip()
-    {
-        return toPlayRandomClip;
     }
 
     /// <summary>
@@ -139,35 +132,17 @@ public class Sound
 
     #region Public Methods
     /// <summary>
-    ///     Initialize each sound with their respective settings in the Awake function
-    ///     in volume, pitch, audio mixer group and whether it is looping
-    ///     If toPlayOnAwake is checked, play sound
-    /// </summary>
-    /// <param name="arg_audioSource"></param>
-    public void InitSound(AudioSource arg_audioSource)
-    {
-        InitAudioSource(arg_audioSource);
-        InitAudioVolume();
-        InitAudioPitch();
-        InitAudioLooping();
-        InitAudioMixerGroup();
-        InitAudioClip();
-        InitPlayOnAwake();
-    }
-
-    /// <summary>
     ///     Play sound
     /// </summary>
-    public void PlaySound()
+    public void PlaySound(AudioClip[] arg_audioClips, bool arg_toPlayRandomClip)
     {
-        // Set audio volume
-        if (audioVolume < 1.01f)
+        // Set audio clip
+        int clipIndex = 0;
+        if (arg_toPlayRandomClip)
         {
-            audioSource.volume = audioVolume;
+            clipIndex = UnityEngine.Random.Range(0, arg_audioClips.Length);
         }
-
-        // Initialize random clip again on PlaySound function call
-        InitAudioClip();
+        audioSource.clip = arg_audioClips[clipIndex];
 
         audioSource.Play();
     }
@@ -186,7 +161,7 @@ public class Sound
     ///     Sets the audio source of a sound to the source passed in
     /// </summary>
     /// <param name="arg_audioSource"></param>
-    private void InitAudioSource(AudioSource arg_audioSource)
+    private void SetAudioSource(AudioSource arg_audioSource)
     {
         audioSource = arg_audioSource;
     }
@@ -194,75 +169,73 @@ public class Sound
     /// <summary>
     ///     Sets the mixer group to the mixer group assigned to this sound
     /// </summary>
-    private void InitAudioMixerGroup()
+    /// <param name="arg_audioMixerGroup"></param>
+    private void SetAudioMixerGroup(AudioMixerGroup arg_audioMixerGroup, MixerGroup arg_mixerGroup)
     {
-        audioSource.outputAudioMixerGroup = audioMixerGroup;
+        audioSource.outputAudioMixerGroup = arg_audioMixerGroup;
+        mixerGroup = arg_mixerGroup;
     }
 
     /// <summary>
     ///     Initializes the audio volume based on the mixer group type selected
     ///     Defaults to master volume
     /// </summary>
-    private void InitAudioVolume()
+    /// <param name="arg_audioVolume"></param>
+    /// <param name="arg_audioSettingsSO"></param>
+    private void SetAudioVolume(float arg_audioVolume, AudioSettingsScriptableObject arg_audioSettingsSO)
     {
-        switch (mixerGroup)
+        if (arg_audioVolume <= 1f)
         {
-            case MixerGroup.MASTER:
-                audioSource.volume = audioSettingsSO.masterVolume;
-                break;
-            case MixerGroup.MUSIC:
-                audioSource.volume = audioSettingsSO.musicVolume;
-                break;
-            case MixerGroup.SFX:
-                audioSource.volume = audioSettingsSO.sfxVolume;
-                break;
-            case MixerGroup.AMBIENCE:
-                audioSource.volume = audioSettingsSO.ambienceVolume;
-                break;
-            default:
-                audioSource.volume = audioSettingsSO.masterVolume;
-                break;
+            audioSource.volume = arg_audioVolume;
+        }
+        else
+        {
+            switch (mixerGroup)
+            {
+                case MixerGroup.MASTER:
+                    audioSource.volume = arg_audioSettingsSO.masterVolume;
+                    break;
+                case MixerGroup.MUSIC:
+                    audioSource.volume = arg_audioSettingsSO.musicVolume;
+                    break;
+                case MixerGroup.SFX:
+                    audioSource.volume = arg_audioSettingsSO.sfxVolume;
+                    break;
+                case MixerGroup.AMBIENCE:
+                    audioSource.volume = arg_audioSettingsSO.ambienceVolume;
+                    break;
+                default:
+                    audioSource.volume = arg_audioSettingsSO.masterVolume;
+                    break;
+            }
         }
     }
 
     /// <summary>
     ///     Initializes audio pitch to the value assigned to this sound
     /// </summary>
-    private void InitAudioPitch()
+    /// <param name="arg_audioPitch"></param>
+    private void SetAudioPitch(float arg_audioPitch)
     {
-        audioSource.pitch = audioPitch;
+        audioSource.pitch = arg_audioPitch;
     }
 
     /// <summary>
     ///     Sets whether this sound is looping
     /// </summary>
-    private void InitAudioLooping()
+    /// <param name="arg_isAudioLooping"></param>
+    private void SetAudioLooping(bool arg_isAudioLooping)
     {
-        audioSource.loop = isAudioLooping;
+        audioSource.loop = arg_isAudioLooping;
     }
 
     /// <summary>
     ///     Sets whether audio starts playing on awake
     /// </summary>
-    private void InitPlayOnAwake()
+    /// <param name="arg_toPlayOnAwake"></param>
+    private void SetPlayOnAwake(bool arg_toPlayOnAwake)
     {
-        audioSource.playOnAwake = toPlayOnAwake;
-        if (toPlayOnAwake) PlaySound();
-    }
-
-    /// <summary>
-    ///     Sets the audio clip
-    /// </summary>
-    private void InitAudioClip()
-    {
-        // Set audio clip
-        int clipIndex = 0;
-        if (toPlayRandomClip)
-        {
-            clipIndex = UnityEngine.Random.Range(0, audioClips.Length);
-        }
-
-        audioSource.clip = audioClips[clipIndex];
+        audioSource.playOnAwake = arg_toPlayOnAwake;
     }
     #endregion
 }

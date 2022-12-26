@@ -1,14 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 ///     Audio manager class that manages/plays/stops audio
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
-    #region Private Fields
+    #region Serialized Fields
     [SerializeField] private string audioManagerName;
-    [SerializeField] private Sound[] sounds;
+    [SerializeField] private string audioName;
+
+    [SerializeField] private AudioSettingsScriptableObject audioSettingsSO;
+
+    [SerializeField] private MixerGroup mixerGroup;
+    private AudioSource audioSource;
+    [SerializeField] private AudioMixerGroup audioMixerGroup;
+    [SerializeField] private AudioClip[] audioClips;
+
+    [Range(0f, 1.01f)]
+    [Tooltip("Setting audio volume to 1.01f forces it to use the volume from AudioSettingsSO")]
+    [SerializeField] private float audioVolume = 0.5f;
+
+    [Range(0.1f, 1f)]
+    [SerializeField] private float audioPitch = 0.5f;
+
+    [SerializeField] private bool toPlayRandomClip = false;
+    [SerializeField] private bool isAudioLooping = false;
+    [SerializeField] private bool toPlayOnAwake = false;
+    #endregion
+
+    #region Private Fields
+    private Sound sound;
     #endregion
 
     /// <summary>
@@ -17,46 +40,32 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        foreach (Sound sound in sounds)
-        {
-            AudioSource source = gameObject.AddComponent<AudioSource>();
-            sound.InitSound(source);
-        }
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+        sound = new Sound(source, 
+                          audioSettingsSO,
+                          audioMixerGroup,
+                          mixerGroup,
+                          audioVolume,
+                          audioPitch,
+                          isAudioLooping,
+                          toPlayOnAwake);
     }
 
     #region Public Methods
     /// <summary>
     ///     Finds the sound in the array and play audio
     /// </summary>
-    /// <param name="arg_audioName"></param>
-    public void PlayAudio(string arg_audioName)
+    public void PlayAudio()
     {
-        Sound s = Array.Find(sounds, sound => sound.GetAudioName() == arg_audioName);
-        if (s == null)
-        {
-            return;
-        }
-        else
-        {
-            s.PlaySound();
-        }
+        sound.PlaySound(audioClips, toPlayRandomClip);
     }
 
     /// <summary>
     ///     Finds the sound in the array and stop audio
     /// </summary>
-    /// <param name="arg_audioName"></param>
-    public void StopAudio(string arg_audioName)
+    public void StopAudio()
     {
-        Sound s = Array.Find(sounds, sound => sound.GetAudioName() == arg_audioName);
-        if (s == null)
-        {
-            return;
-        }
-        else
-        {
-            s.StopSound();
-        }
+        sound.StopSound();
     }
     #endregion
 }

@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
                           audioSettingsSO,
                           audioMixerGroup,
                           mixerGroup,
+                          audioClips,
                           audioVolume,
                           audioPitch,
                           isAudioLooping,
@@ -57,7 +58,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayAudio()
     {
-        sound.PlaySound(audioClips, toPlayRandomClip);
+        sound.PlaySound();
     }
 
     /// <summary>

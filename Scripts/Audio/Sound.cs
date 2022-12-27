@@ -28,7 +28,6 @@ public class Sound
     private float audioVolume = 0.5f;
     private float audioPitch = 0.5f;
 
-    private bool toPlayRandomClip = false;
     private bool isAudioLooping = false;
     private bool toPlayOnAwake = false;
     #endregion
@@ -45,14 +44,16 @@ public class Sound
                  AudioSettingsScriptableObject arg_audioSettingsSO,
                  AudioMixerGroup arg_audioMixerGroup,
                  MixerGroup arg_mixerGroup,
+                 AudioClip[] arg_audioClips,
                  float arg_audioVolume,
                  float arg_audioPitch,
                  bool arg_isAudioLooping,
                  bool arg_toPlayOnAwake)
     {
         SetAudioSource(arg_audioSource);
-        SetAudioVolume(arg_audioVolume, arg_audioSettingsSO);
         SetAudioMixerGroup(arg_audioMixerGroup, arg_mixerGroup);
+        SetAudioClips(arg_audioClips);
+        SetAudioVolume(arg_audioVolume, arg_audioSettingsSO);
         SetAudioPitch(arg_audioPitch);
         SetAudioLooping(arg_isAudioLooping);
         SetPlayOnAwake(arg_toPlayOnAwake);
@@ -133,16 +134,17 @@ public class Sound
     #region Public Methods
     /// <summary>
     ///     Play sound
+    ///     If there are multiple clips, play random clip
     /// </summary>
-    public void PlaySound(AudioClip[] arg_audioClips, bool arg_toPlayRandomClip)
+    public void PlaySound()
     {
         // Set audio clip
         int clipIndex = 0;
-        if (arg_toPlayRandomClip)
+        if (audioClips.Length > 1)
         {
-            clipIndex = UnityEngine.Random.Range(0, arg_audioClips.Length);
+            clipIndex = UnityEngine.Random.Range(0, audioClips.Length);
         }
-        audioSource.clip = arg_audioClips[clipIndex];
+        audioSource.clip = audioClips[clipIndex];
 
         audioSource.Play();
     }
@@ -231,11 +233,25 @@ public class Sound
 
     /// <summary>
     ///     Sets whether audio starts playing on awake
+    ///     When sound object is instantiated, it will automatically play the sound
     /// </summary>
     /// <param name="arg_toPlayOnAwake"></param>
     private void SetPlayOnAwake(bool arg_toPlayOnAwake)
     {
         audioSource.playOnAwake = arg_toPlayOnAwake;
+        if (arg_toPlayOnAwake != false)
+        {
+            PlaySound();
+        }
+    }
+
+    /// <summary>
+    ///     Sets the audio clips to the class private variable
+    /// </summary>
+    /// <param name="arg_audioClips"></param>
+    private void SetAudioClips(AudioClip[] arg_audioClips)
+    {
+        audioClips = arg_audioClips;
     }
     #endregion
 }

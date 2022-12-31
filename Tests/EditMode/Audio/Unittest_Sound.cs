@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.TestTools;
 using UnityEngine.TestTools.Utils;
 
 public class Unittest_Sound

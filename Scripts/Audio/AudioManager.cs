@@ -14,7 +14,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSettingsScriptableObject audioSettingsSO;
 
     [SerializeField] private MixerGroup mixerGroup;
-    private AudioSource audioSource;
     [SerializeField] private AudioMixerGroup audioMixerGroup;
     [SerializeField] private AudioClip[] audioClips;
 
@@ -25,7 +24,6 @@ public class AudioManager : MonoBehaviour
     [Range(0.1f, 1f)]
     [SerializeField] private float audioPitch = 0.5f;
 
-    [SerializeField] private bool toPlayRandomClip = false;
     [SerializeField] private bool isAudioLooping = false;
     [SerializeField] private bool toPlayOnAwake = false;
     #endregion
@@ -51,6 +49,39 @@ public class AudioManager : MonoBehaviour
                           isAudioLooping,
                           toPlayOnAwake);
     }
+
+    #region Properties
+    /// <summary>
+    ///     Get whether the sound is playing audio
+    /// </summary>
+    /// <returns>
+    ///     True if sound is playing audio
+    ///     False otherwise
+    /// </returns>
+    public bool GetBoolIsAudioPlaying()
+    {
+        return sound.GetBoolIsAudioPlaying();
+    }
+
+    /// <summary>
+    ///     Get audio name
+    /// </summary>
+    /// <returns>Name of audio</returns>
+    public string GetAudioName()
+    {
+        return sound.GetAudioName();
+    }
+
+    public bool GetBoolIsAudioLooping()
+    {
+        return sound.GetBoolIsAudioLooping();
+    }
+
+    public bool GetBoolToPlayOnAwake()
+    {
+        return sound.GetBoolToPlayOnAwake();
+    }
+    #endregion
 
     #region Public Methods
     /// <summary>

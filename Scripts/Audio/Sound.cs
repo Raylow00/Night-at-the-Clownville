@@ -19,17 +19,9 @@ public class Sound
 {
     #region Private Fields
     private string audioName;
-
     private MixerGroup mixerGroup;
     private AudioSource audioSource;
-    private AudioMixerGroup audioMixerGroup;
     private AudioClip[] audioClips;
-
-    private float audioVolume = 0.5f;
-    private float audioPitch = 0.5f;
-
-    private bool isAudioLooping = false;
-    private bool toPlayOnAwake = false;
     #endregion
 
     #region Constructor
@@ -69,7 +61,12 @@ public class Sound
     /// </returns>
     public string GetAudioName()
     {
-        return audioName;
+        if (audioName != null)
+        {
+            return audioName;
+        }
+
+        return "Audio name is empty";
     }
 
     /// <summary>

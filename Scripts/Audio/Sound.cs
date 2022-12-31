@@ -70,6 +70,15 @@ public class Sound
     }
 
     /// <summary>
+    ///     Get the audio source assigned to the sound
+    /// </summary>
+    /// <returns></returns>
+    public AudioSource GetAudioSource()
+    {
+        return audioSource;
+    }
+
+    /// <summary>
     ///     Get the volume of the audio source
     /// </summary>
     /// <returns>

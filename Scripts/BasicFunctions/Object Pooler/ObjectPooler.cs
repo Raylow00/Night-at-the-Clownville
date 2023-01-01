@@ -7,9 +7,9 @@ public class ObjectPooler : MonoBehaviour
     [System.Serializable]
     public class ObjectPool
     {
-        public string poolTag;
-        public GameObject poolPrefab;
-        public int poolSize;
+        public string tag;
+        public GameObject prefab;
+        public int size;
     }
 
     public List<ObjectPool> objectPools;
@@ -67,16 +67,16 @@ public class ObjectPooler : MonoBehaviour
         foreach (ObjectPool pool in objectPools)
         {
             Queue<GameObject> objectPoolQueueObject = new Queue<GameObject>();
-            for (int i = 0; i < pool.poolSize; i++)
+            for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.poolPrefab);
+                GameObject obj = Instantiate(pool.prefab);
 
                 // Set gameobject to inactive first
                 obj.SetActive(false);
                 objectPoolQueueObject.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.poolTag, objectPoolQueueObject);
+            poolDictionary.Add(pool.tag, objectPoolQueueObject);
         }
     }
     #endregion

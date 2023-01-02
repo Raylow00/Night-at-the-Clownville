@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class KeyGameObject
 {
+    #region Private Fields
     private bool isKeyObtained;
+    #endregion
 
+    #region Constructor
+    /// <summary>
+    ///     Constructor
+    ///     Sets isKeyObtained to false
+    /// </summary>
     public KeyGameObject()
     {
         isKeyObtained = false;
     }
+    #endregion
 
+    #region Public Methods
+    /// <summary>
+    ///     Get whether key is obtained
+    /// </summary>
+    /// <returns>
+    ///     True if key is obtained
+    ///     False otherwise
+    /// </returns>
     public bool GetIsKeyObtained()
     {
         return isKeyObtained;
     }
 
+    /// <summary>
+    ///     Sets isKeyObtained to true
+    /// </summary>
+    /// <returns>
+    ///     True if key is obtained
+    ///     False otherwise
+    /// </returns>
     public bool ObtainKey()
     {
         if (isKeyObtained == false)
@@ -24,4 +47,5 @@ public class KeyGameObject
         }
         return isKeyObtained;
     }
+    #endregion
 }

@@ -6,21 +6,16 @@ public class Breakable : MonoBehaviour, IBreakable
     [SerializeField] private GameObject brokenObject;
     #endregion
 
-    #region Private Fields
-    private bool isBroken;
-    #endregion
-
     #region Public Methods
     /// <summary>
-    ///     Gets whether the object is broken
+    ///     Gets the broken version of the object
     /// </summary>
     /// <returns>
-    ///     True if broken
-    ///     False otherwise
+    ///     Broken object
     /// </returns>
-    public bool GetBoolIsBroken()
+    public GameObject GetBrokenObject()
     {
-        return isBroken;
+        return brokenObject;
     }
 
     /// <summary>
@@ -29,13 +24,8 @@ public class Breakable : MonoBehaviour, IBreakable
     /// </summary>
     public void BreakObject()
     {
-        if (isBroken == false)
-        {
-            Instantiate(brokenObject, transform.position, transform.rotation);
-            Destroy(gameObject);
-
-            isBroken = true;
-        }
+        Instantiate(brokenObject, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
     #endregion
 }

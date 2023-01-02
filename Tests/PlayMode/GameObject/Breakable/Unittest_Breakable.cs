@@ -18,12 +18,12 @@ public class Unittest_Breakable
         //<-------------------------------- Test Setup ---------------------------------->//
         testBreakableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Breakable/Test_Breakable"));
         Breakable testBreakable = testBreakableGameObject.GetComponent<Breakable>();
-        yield return null;
+        yield return new WaitForSeconds(1f);
 
         //<-------------------------------- Test Execution ------------------------------>//
 
         //<-------------------------------- Test Expectation ---------------------------->//
-        Assert.IsFalse(testBreakable.GetBoolIsBroken());
+        Assert.IsTrue(testBreakableGameObject);
     }
 
     [UnityTest]
@@ -39,9 +39,10 @@ public class Unittest_Breakable
         //<-------------------------------- Test Execution ------------------------------>//
         testBreakable.BreakObject();
 
-        yield return null;
+        yield return new WaitForSeconds(1f);
 
         //<-------------------------------- Test Expectation ---------------------------->//
-        Assert.IsTrue(testBreakable.GetBoolIsBroken());
+        Assert.IsTrue(testBreakable.GetBrokenObject());
+        Assert.IsFalse(testBreakableGameObject);
     }
 }

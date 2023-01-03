@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Breakable : MonoBehaviour, IBreakable
+public class Breakable : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private GameObject brokenObject;

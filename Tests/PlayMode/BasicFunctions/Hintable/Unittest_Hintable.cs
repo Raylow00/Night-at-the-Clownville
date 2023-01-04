@@ -16,7 +16,7 @@ public class Unittest_Hintable
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
-        testHintableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Hintable/Test_Hintable"));
+        testHintableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/BasicFunctions/Hintable/Test_Hintable"));
         Hintable testHintable = testHintableGameObject.GetComponent<Hintable>();
 
         yield return null;

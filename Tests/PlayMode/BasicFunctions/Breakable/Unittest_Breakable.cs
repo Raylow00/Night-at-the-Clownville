@@ -16,7 +16,7 @@ public class Unittest_Breakable
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
-        testBreakableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Breakable/Test_Breakable"));
+        testBreakableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/BasicFunctions/Breakable/Test_Breakable"));
         Breakable testBreakable = testBreakableGameObject.GetComponent<Breakable>();
         yield return new WaitForSeconds(1f);
 
@@ -32,7 +32,7 @@ public class Unittest_Breakable
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
-        testBreakableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Breakable/Test_Breakable"));
+        testBreakableGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/BasicFunctions/Breakable/Test_Breakable"));
         Breakable testBreakable = testBreakableGameObject.GetComponent<Breakable>();
         yield return null;
 

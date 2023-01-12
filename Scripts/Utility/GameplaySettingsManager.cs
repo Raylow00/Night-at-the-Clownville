@@ -131,6 +131,25 @@ public class GameplaySettingsManager : MonoBehaviour
         string keyData = gameplaySettingsSO.equipCameraKey + arg_newKey;
         OverrideKeyBindings(keyData);
     }
+
+    /// <summary>
+    ///     Sets the mouse sensitivity of X and Y axis using the input value from player
+    /// </summary>
+    /// <param name="arg_value"></param>
+    public void SetMouseSensitivity(float arg_value)
+    {
+        gameplaySettingsSO.mouseSensitivityX = 1.6f * arg_value;
+        gameplaySettingsSO.mouseSensitivityY = arg_value;
+    }
+
+    /// <summary>
+    ///     Sets the field of view of camera using the input value from player
+    /// </summary>
+    /// <param name="arg_value"></param>
+    public void SetFieldOfView(float arg_value)
+    {
+        gameplaySettingsSO.fieldOfView = arg_value;
+    }    
     #endregion
 
     #region Private Methods

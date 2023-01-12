@@ -132,4 +132,39 @@ public class Unittest_GameplaySettingsManager
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testGameplaySettingsScriptableObject.equipCameraKey == "d");
     }
+
+    [UnityTest]
+    public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_SetMouseSensitivity()
+    {
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
+        GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
+        yield return null;
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        testGameplaySettingsManager.SetMouseSensitivity(15f);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        Assert.IsTrue(testGameplaySettingsScriptableObject.mouseSensitivityX == (1.6f * 15f));
+        Assert.IsTrue(testGameplaySettingsScriptableObject.mouseSensitivityY == 15f);
+    }
+
+    [UnityTest]
+    public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_SetFieldOfView()
+    {
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
+        GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
+        yield return null;
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        testGameplaySettingsManager.SetFieldOfView(65f);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        Assert.IsTrue(testGameplaySettingsScriptableObject.fieldOfView == 65f);
+    }
 }

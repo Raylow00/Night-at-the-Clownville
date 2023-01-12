@@ -4,7 +4,7 @@ using Cinemachine;
 public class CinemachinePOVExtension : CinemachineExtension
 {
     #region Serialized Fields
-    //[SerializeField] private GameplaySettingsScriptableObject gameplaySettingsSO;
+    [SerializeField] private GameplaySettingsScriptableObject gameplaySettingsSO;
     #endregion
 
     #region Private Fields
@@ -14,10 +14,22 @@ public class CinemachinePOVExtension : CinemachineExtension
     private float xClamp = 85f;     // Range (60f, 105f)
     #endregion
 
-    public void SetFieldOfView(float arg_value)
+    void Start()
+    {
+        SetFieldOfView();
+    }
+
+    // This should be in PlayerInputManager since it only references the gameplaySettingsSO.mouseSensitivityX and Y
+    //public void ReceiveMouseInput(Vector2 arg_mouseInput)
+    //{
+    //    mouseX = arg_mouseInput.x * gameplaySettingsSO.mouseSensitivityX;
+    //    mouseY = arg_mouseInput.y * gameplaySettingsSO.mouseSensitivityY;
+    //}
+
+    public void SetFieldOfView()
     {
         CinemachineVirtualCamera vcam = GetComponent<CinemachineVirtualCamera>();
-        //vcam.m_Lens.FieldOfView = playerKeyPreferences.fieldOfView;
+        vcam.m_Lens.FieldOfView = gameplaySettingsSO.fieldOfView;
     }
 
     protected override void PostPipelineStageCallback(CinemachineVirtualCameraBase vcam, CinemachineCore.Stage stage, ref CameraState state, float deltaTime)
@@ -28,8 +40,8 @@ public class CinemachinePOVExtension : CinemachineExtension
             {
                 if (startingRotation == null) startingRotation = transform.localRotation.eulerAngles;
                 Vector2 deltaInput = new Vector2(mouseX, mouseY);
-                //startingRotation.x += deltaInput.x * playerKeyPreferences.mouseSensitivityX * Time.deltaTime;
-                //startingRotation.y += deltaInput.y * playerKeyPreferences.mouseSensitivityY * Time.deltaTime;
+                startingRotation.x += deltaInput.x * gameplaySettingsSO.mouseSensitivityX * Time.deltaTime;
+                startingRotation.y += deltaInput.y * gameplaySettingsSO.mouseSensitivityY * Time.deltaTime;
                 startingRotation.y = Mathf.Clamp(startingRotation.y, -xClamp, xClamp);
 
                 state.RawOrientation = Quaternion.Euler(-startingRotation.y, startingRotation.x, 0f);

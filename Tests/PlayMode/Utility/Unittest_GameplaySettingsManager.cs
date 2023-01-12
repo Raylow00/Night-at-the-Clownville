@@ -16,7 +16,7 @@ public class Unittest_GameplaySettingsManager
         // Use the Assert class to test conditions.
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
 
@@ -35,7 +35,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapReloadKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -52,7 +52,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapCrouchKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -69,7 +69,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapFlashlightKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -86,7 +86,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapSwitchLastUsedWeaponKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -103,7 +103,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapViewMapKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -120,7 +120,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_RemapEquipCameraKey()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -137,7 +137,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_SetMouseSensitivity()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;
@@ -155,7 +155,7 @@ public class Unittest_GameplaySettingsManager
     public IEnumerator Unittest_GameplaySettingsManager_OverrideKeyBindings_SetFieldOfView()
     {
         //<-------------------------------- Test Setup ---------------------------------->//
-        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/Test Gameplay Settings Manager"));
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
         GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
         GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
         yield return null;

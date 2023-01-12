@@ -6,6 +6,14 @@ public class GameplaySettingsManager : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private GameplaySettingsScriptableObject gameplaySettingsSO;
+    [SerializeField] private StringEvent onReloadKeyRemapEvent;
+    [SerializeField] private StringEvent onCrouchKeyRemapEvent;
+    [SerializeField] private StringEvent onFlashlightKeyRemapEvent;
+    [SerializeField] private StringEvent onSwitchLastUsedWeaponKeyRemapEvent;
+    [SerializeField] private StringEvent onViewMapKeyRemapEvent;
+    [SerializeField] private StringEvent onEquipCameraKeyRemapEvent;
+    [SerializeField] private FloatEvent onMouseSensitivityChangeEvent;
+    [SerializeField] private FloatEvent onFieldOfViewChangeEvent;
     #endregion
 
     #region Private Fields
@@ -80,6 +88,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         string keyData = gameplaySettingsSO.reloadKey + arg_newKey;
         OverrideKeyBindings(keyData);
+        
+        // Send out the old + new key
+        onReloadKeyRemapEvent.Raise(keyData);
     }
 
     /// <summary>
@@ -90,6 +101,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         string keyData = gameplaySettingsSO.crouchKey + arg_newKey;
         OverrideKeyBindings(keyData);
+
+        // Send out the old + new key
+        onCrouchKeyRemapEvent.Raise(keyData);
     }
 
     /// <summary>
@@ -100,6 +114,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         string keyData = gameplaySettingsSO.flashlightKey + arg_newKey;
         OverrideKeyBindings(keyData);
+
+        // Send out the old + new key
+        onFlashlightKeyRemapEvent.Raise(keyData);
     }
 
     /// <summary>
@@ -120,6 +137,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         string keyData = gameplaySettingsSO.viewMapKey + arg_newKey;
         OverrideKeyBindings(keyData);
+
+        // Send out the old + new key
+        onViewMapKeyRemapEvent.Raise(keyData);
     }
 
     /// <summary>
@@ -130,6 +150,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         string keyData = gameplaySettingsSO.equipCameraKey + arg_newKey;
         OverrideKeyBindings(keyData);
+
+        // Send out the old + new key
+        onEquipCameraKeyRemapEvent.Raise(keyData);
     }
 
     /// <summary>
@@ -140,6 +163,9 @@ public class GameplaySettingsManager : MonoBehaviour
     {
         gameplaySettingsSO.mouseSensitivityX = 1.6f * arg_value;
         gameplaySettingsSO.mouseSensitivityY = arg_value;
+
+        // Send out the new mouse sensitivity value
+        onMouseSensitivityChangeEvent.Raise(arg_value);
     }
 
     /// <summary>
@@ -149,6 +175,9 @@ public class GameplaySettingsManager : MonoBehaviour
     public void SetFieldOfView(float arg_value)
     {
         gameplaySettingsSO.fieldOfView = arg_value;
+
+        // Send out the new field of view
+        onFieldOfViewChangeEvent.Raise(arg_value);
     }    
     #endregion
 

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -273,7 +272,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 reloadAction.ApplyBindingOverride(0, reloadBinding);
                 reloadAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.reloadKey = newKey;
+
+                // Send out event
+                onReloadKeyRemapEvent.Raise(gameplaySettingsSO.reloadKey);
 
                 break;
             case "c":
@@ -290,7 +293,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 crouchAction.ApplyBindingOverride(0, crouchBinding);
                 crouchAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.crouchKey = newKey;
+
+                // Send out event
+                onCrouchKeyRemapEvent.Raise(gameplaySettingsSO.crouchKey);
 
                 break;
             case "f":
@@ -305,7 +312,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 flashlightAction.ApplyBindingOverride(0, flashlightBinding);
                 flashlightAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.flashlightKey = newKey;
+
+                // Send out event
+                onFlashlightKeyRemapEvent.Raise(gameplaySettingsSO.flashlightKey);
 
                 break;
             case "q":
@@ -320,7 +331,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 switchLastUsedWeaponAction.ApplyBindingOverride(0, lastUsedWeaponBinding);
                 switchLastUsedWeaponAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.switchLastUsedWeaponKey = newKey;
+
+                // Send out event
+                onSwitchLastUsedWeaponKeyRemapEvent.Raise(gameplaySettingsSO.switchLastUsedWeaponKey);
 
                 break;
             case "m":
@@ -335,7 +350,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 viewMapAction.ApplyBindingOverride(0, mapBinding);
                 viewMapAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.viewMapKey = newKey;
+
+                // Send out event
+                onViewMapKeyRemapEvent.Raise(gameplaySettingsSO.viewMapKey);
 
                 break;
             case "g":
@@ -350,7 +369,11 @@ public class GameplaySettingsManager : MonoBehaviour
                 equipCameraAction.ApplyBindingOverride(0, cameraBinding);
                 equipCameraAction.Enable();
 
+                // Assign to gameplay settings SO after rebinding
                 gameplaySettingsSO.equipCameraKey = newKey;
+
+                // Send out event
+                onEquipCameraKeyRemapEvent.Raise(gameplaySettingsSO.equipCameraKey);
 
                 break;
             default:

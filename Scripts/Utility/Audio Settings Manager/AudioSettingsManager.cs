@@ -6,6 +6,10 @@ public class AudioSettingsManager : MonoBehaviour
     #region Serialized Fields
     [SerializeField] private AudioSettingsScriptableObject audioSettingsSO;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private FloatEvent onMasterVolumeChangeEvent;
+    [SerializeField] private FloatEvent onMusicVolumeChangeEvent;
+    [SerializeField] private FloatEvent onSFXVolumeChangeEvent;
+    [SerializeField] private FloatEvent onAmbienceVolumeChangeEvent;
     #endregion
 
     #region Private Fields
@@ -56,8 +60,12 @@ public class AudioSettingsManager : MonoBehaviour
     /// <param name="arg_value"></param>
     public void SetMasterVolume(float arg_value)
     {
+        // Set the value to SO
         audioSettingsSO.masterVolume = arg_value;
+        // Set the value to audio mixer
         audioMixer.SetFloat(audioSettingsSO.masterVolumeParamName, MapValue(audioSettingsSO.masterVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        // Send out event
+        onMasterVolumeChangeEvent.Raise(audioSettingsSO.masterVolume);
     }
 
     /// <summary>
@@ -67,8 +75,12 @@ public class AudioSettingsManager : MonoBehaviour
     /// <param name="arg_value"></param>
     public void SetMusicVolume(float arg_value)
     {
+        // Set the value to SO
         audioSettingsSO.musicVolume = arg_value;
+        // Set the value to audio mixer
         audioMixer.SetFloat(audioSettingsSO.musicVolumeParamName, MapValue(audioSettingsSO.musicVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        // Send out event
+        onMusicVolumeChangeEvent.Raise(audioSettingsSO.musicVolume);
     }
 
     /// <summary>
@@ -78,8 +90,12 @@ public class AudioSettingsManager : MonoBehaviour
     /// <param name="arg_value"></param>
     public void SetSFXVolume(float arg_value)
     {
+        // Set the value to SO
         audioSettingsSO.sfxVolume = arg_value;
+        // Set the value to audio mixer
         audioMixer.SetFloat(audioSettingsSO.sfxVolumeParamName, MapValue(audioSettingsSO.sfxVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        // Send out event
+        onSFXVolumeChangeEvent.Raise(audioSettingsSO.sfxVolume);
     }
 
     /// <summary>
@@ -89,8 +105,12 @@ public class AudioSettingsManager : MonoBehaviour
     /// <param name="arg_value"></param>
     public void SetAmbienceVolume(float arg_value)
     {
+        // Set the value to SO
         audioSettingsSO.ambienceVolume = arg_value;
+        // Set the value to audio mixer
         audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        // Send out event
+        onAmbienceVolumeChangeEvent.Raise(audioSettingsSO.ambienceVolume);
     }
     #endregion
 

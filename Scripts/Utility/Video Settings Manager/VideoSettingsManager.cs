@@ -117,7 +117,14 @@ public class VideoSettingsManager : MonoBehaviour
 
         // Set the screen resolution
         Resolution[] resolutions = Screen.resolutions;
-        Screen.SetResolution(resolutions[arg_value].width, resolutions[arg_value].height, videoSettingsSO.fullScreen);
+        if (arg_value == -1)
+        {
+            Screen.SetResolution(resolutions[resolutions.Length - 1].width, resolutions[resolutions.Length - 1].height, videoSettingsSO.fullScreen);
+        }
+        else
+        {
+            Screen.SetResolution(resolutions[arg_value].width, resolutions[arg_value].height, videoSettingsSO.fullScreen);
+        }
 
         // Send out the resolution selection from dropdown
         onResolutionChangeEvent.Raise(arg_value);

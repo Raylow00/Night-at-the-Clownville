@@ -172,6 +172,28 @@ public class Unittest_VideoSettingsManager
     }
 
     [UnityTest]
+    public IEnumerator Unittest_VideoSettingsManager_SetResolution_HighestResolution()
+    {
+        // Use the Assert class to test conditions.
+        // Use yield to skip a frame.
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testVideoSettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/VideoSettingsManager/Test Video Settings Manager"));
+        VideoSettingsManager testVideoSettingsManager = testVideoSettingsManagerGameObject.GetComponent<VideoSettingsManager>();
+        yield return null;
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        testVideoSettingsManager.SetResolution(-1);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        int resolutionWidth = testVideoSettingsManager.GetResolutionWidth();
+        int resolutionHeight = testVideoSettingsManager.GetResolutionHeight();
+
+        Assert.IsTrue(resolutionWidth == 1920);     // change this value when doing a build => it will be the width of the first available resolution
+        Assert.IsTrue(resolutionHeight == 1080);    // change this value when doing a build => it will be the height of the first available resolution
+    }
+
+    [UnityTest]
     public IEnumerator Unittest_VideoSettingsManager_SetVideoQualityIndex_0()
     {
         // Use the Assert class to test conditions.

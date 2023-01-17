@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class ColliderEventListener : BaseGameEventListener<Collider, ColliderEvent, UnityColliderEventResponse>
+public class Vector2EventListener : BaseGameEventListener<Vector2, Vector2Event, UnityVector2EventResponse>
 {
     #region Private Fields
     private bool hasReceivedEvent = false;
     #endregion
 
     /// <summary>
-    ///     Acknowledge Collider data received
+    ///     Acknowledge Vector2 data received
     /// </summary>
     /// <param name="arg_value"></param>
-    public void AcknowledgeEvent(Collider arg_value)
+    public void AcknowledgeEvent(Vector2 arg_value)
     {
         hasReceivedEvent = true;
         Debug.Log("Received event: " + hasReceivedEvent + "; Value: " + arg_value);

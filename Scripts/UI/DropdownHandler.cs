@@ -38,6 +38,9 @@ public class DropdownHandler : MonoBehaviour
         dropDown.AddOptions(options);
         dropDown.value = 0;
         dropDown.RefreshShownValue();
+
+        // Have to remove and re-add component String Event Listener in the editor sometimes
+        Debug.Log("[DropdownHandler] Dropdown options: " + dropDown.options);
     }
 
     /// <summary>

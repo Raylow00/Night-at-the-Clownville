@@ -7,6 +7,15 @@ public class CollisionEventListener : BaseGameEventListener<Collision, Collision
     #endregion
 
     /// <summary>
+    ///     Get the acknowledgement of whether event is received
+    /// </summary>
+    /// <returns></returns>
+    public bool GetAcknowledgement()
+    {
+        return hasReceivedEvent;
+    }
+
+    /// <summary>
     ///     Acknowledge Collision data received
     /// </summary>
     /// <param name="arg_value"></param>

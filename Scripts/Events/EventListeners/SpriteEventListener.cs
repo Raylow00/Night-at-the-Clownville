@@ -7,6 +7,15 @@ public class SpriteEventListener : BaseGameEventListener<Sprite, SpriteEvent, Un
     #endregion
 
     /// <summary>
+    ///     Get the acknowledgement of whether event is received
+    /// </summary>
+    /// <returns></returns>
+    public bool GetAcknowledgement()
+    {
+        return hasReceivedEvent;
+    }
+
+    /// <summary>
     ///     Acknowledge Sprite data received
     /// </summary>
     /// <param name="arg_value"></param>

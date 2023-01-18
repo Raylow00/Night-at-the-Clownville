@@ -7,6 +7,15 @@ public class BoolEventListener : BaseGameEventListener<bool, BoolEvent, UnityBoo
     #endregion
 
     /// <summary>
+    ///     Get the acknowledgement of whether event is received
+    /// </summary>
+    /// <returns></returns>
+    public bool GetAcknowledgement()
+    {
+        return hasReceivedEvent;
+    }
+
+    /// <summary>
     ///     Acknowledge boolean data received
     /// </summary>
     /// <param name="arg_value"></param>

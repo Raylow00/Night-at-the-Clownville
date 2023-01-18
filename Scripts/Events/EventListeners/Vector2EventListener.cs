@@ -7,6 +7,15 @@ public class Vector2EventListener : BaseGameEventListener<Vector2, Vector2Event,
     #endregion
 
     /// <summary>
+    ///     Get the acknowledgement of whether event is received
+    /// </summary>
+    /// <returns></returns>
+    public bool GetAcknowledgement()
+    {
+        return hasReceivedEvent;
+    }
+
+    /// <summary>
     ///     Acknowledge Vector2 data received
     /// </summary>
     /// <param name="arg_value"></param>

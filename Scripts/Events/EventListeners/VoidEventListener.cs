@@ -7,6 +7,15 @@ public class VoidEventListener : BaseGameEventListener<Void, VoidEvent, UnityVoi
     #endregion
 
     /// <summary>
+    ///     Get the acknowledgement of whether event is received
+    /// </summary>
+    /// <returns></returns>
+    public bool GetAcknowledgement()
+    {
+        return hasReceivedEvent;
+    }
+
+    /// <summary>
     ///     Acknowledge void data received
     /// </summary>
     /// <param name="arg_value"></param>

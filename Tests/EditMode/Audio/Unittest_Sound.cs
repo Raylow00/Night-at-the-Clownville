@@ -55,7 +55,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -125,7 +125,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -147,7 +147,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.1f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -194,7 +194,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -216,7 +216,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.2f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -263,7 +263,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -285,7 +285,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.3f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -332,7 +332,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
                                     testAudioMixerGroup,
@@ -353,7 +353,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.4f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -400,7 +400,7 @@ public class Unittest_Sound
         //<-------------------------------- Test Setup ---------------------------------->//
 
         AudioClip[] testAudioClips = new AudioClip[] { Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip") };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -422,7 +422,7 @@ public class Unittest_Sound
         Assert.IsTrue(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.4f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -470,7 +470,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -540,7 +540,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -562,7 +562,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.1f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -610,7 +610,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -632,7 +632,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.2f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -680,7 +680,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -702,7 +702,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.3f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -750,7 +750,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -772,7 +772,7 @@ public class Unittest_Sound
         Assert.IsFalse(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.4f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));
@@ -820,7 +820,7 @@ public class Unittest_Sound
 
         AudioClip testAudioClip = Resources.Load<AudioClip>("TestResources/EditMode/Audio/test_audio_clip");
         AudioClip[] testAudioClips = new AudioClip[] { testAudioClip, testAudioClip, testAudioClip };
-        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject");
+        testAudioSettingsSO = Resources.Load<AudioSettingsScriptableObject>("TestResources/EditMode/Audio/TestAudioSettingsScriptableObject_Sound");
 
         Sound testSound = new Sound(testAudioSource,
                                     testAudioSettingsSO,
@@ -842,7 +842,7 @@ public class Unittest_Sound
         Assert.IsTrue(testSound.GetBoolToPlayOnAwake());
         Assert.IsTrue(testSound.GetBoolIsAudioPlaying());
 
-        float EXP_testAudioVolume = 0.4f;
+        float EXP_testAudioVolume = 0.6f;
         float EXP_testAudioPitch = 1f;
 
         Assert.That(testSound.GetAudioVolume, Is.EqualTo(EXP_testAudioVolume).Using(FloatEqualityComparer.Instance));

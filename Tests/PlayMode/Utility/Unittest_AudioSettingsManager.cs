@@ -35,10 +35,10 @@ public class Unittest_AudioSettingsManager
         testAudioMixer.GetFloat(testAudioSettingsScriptableObject.ambienceVolumeParamName, out OUT_audioMixerAmbienceVolume);
         yield return null;
 
-        float EXP_masterVolume = 60f;
-        float EXP_musicVolume = 60f;
-        float EXP_sfxVolume = 60f;
-        float EXP_ambienceVolume = 60f;
+        float EXP_masterVolume = 0.6f;
+        float EXP_musicVolume = 0.6f;
+        float EXP_sfxVolume = 0.6f;
+        float EXP_ambienceVolume = 0.6f;
         Assert.That(testAudioSettingsScriptableObject.masterVolume, Is.EqualTo(EXP_masterVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.musicVolume, Is.EqualTo(EXP_musicVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.sfxVolume, Is.EqualTo(EXP_sfxVolume).Using(FloatEqualityComparer.Instance));
@@ -70,7 +70,7 @@ public class Unittest_AudioSettingsManager
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        testAudioSettingsManager.SetMasterVolume(100f);
+        testAudioSettingsManager.SetMasterVolume(1f);
 
         //<-------------------------------- Test Expectation ---------------------------->//
         float OUT_audioMixerMasterVolume;
@@ -83,10 +83,10 @@ public class Unittest_AudioSettingsManager
         testAudioMixer.GetFloat(testAudioSettingsScriptableObject.ambienceVolumeParamName, out OUT_audioMixerAmbienceVolume);
         yield return null;
 
-        float EXP_masterVolume = 100f;
-        float EXP_musicVolume = 60f;
-        float EXP_sfxVolume = 60f;
-        float EXP_ambienceVolume = 60f;
+        float EXP_masterVolume = 1f;
+        float EXP_musicVolume = 0.6f;
+        float EXP_sfxVolume = 0.6f;
+        float EXP_ambienceVolume = 0.6f;
         Assert.That(testAudioSettingsScriptableObject.masterVolume, Is.EqualTo(EXP_masterVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.musicVolume, Is.EqualTo(EXP_musicVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.sfxVolume, Is.EqualTo(EXP_sfxVolume).Using(FloatEqualityComparer.Instance));
@@ -118,7 +118,7 @@ public class Unittest_AudioSettingsManager
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        testAudioSettingsManager.SetMusicVolume(100f);
+        testAudioSettingsManager.SetMusicVolume(1f);
 
         //<-------------------------------- Test Expectation ---------------------------->//
         float OUT_audioMixerMasterVolume;
@@ -131,10 +131,10 @@ public class Unittest_AudioSettingsManager
         testAudioMixer.GetFloat(testAudioSettingsScriptableObject.ambienceVolumeParamName, out OUT_audioMixerAmbienceVolume);
         yield return null;
 
-        float EXP_masterVolume = 60f;
-        float EXP_musicVolume = 100f;
-        float EXP_sfxVolume = 60f;
-        float EXP_ambienceVolume = 60f;
+        float EXP_masterVolume = 0.6f;
+        float EXP_musicVolume = 1f;
+        float EXP_sfxVolume = 0.6f;
+        float EXP_ambienceVolume = 0.6f;
         Assert.That(testAudioSettingsScriptableObject.masterVolume, Is.EqualTo(EXP_masterVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.musicVolume, Is.EqualTo(EXP_musicVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.sfxVolume, Is.EqualTo(EXP_sfxVolume).Using(FloatEqualityComparer.Instance));
@@ -166,7 +166,7 @@ public class Unittest_AudioSettingsManager
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        testAudioSettingsManager.SetSFXVolume(100f);
+        testAudioSettingsManager.SetSFXVolume(1f);
 
         //<-------------------------------- Test Expectation ---------------------------->//
         float OUT_audioMixerMasterVolume;
@@ -179,10 +179,10 @@ public class Unittest_AudioSettingsManager
         testAudioMixer.GetFloat(testAudioSettingsScriptableObject.ambienceVolumeParamName, out OUT_audioMixerAmbienceVolume);
         yield return null;
 
-        float EXP_masterVolume = 60f;
-        float EXP_musicVolume = 60f;
-        float EXP_sfxVolume = 100f;
-        float EXP_ambienceVolume = 60f;
+        float EXP_masterVolume = 0.6f;
+        float EXP_musicVolume = 0.6f;
+        float EXP_sfxVolume = 1f;
+        float EXP_ambienceVolume = 0.6f;
         Assert.That(testAudioSettingsScriptableObject.masterVolume, Is.EqualTo(EXP_masterVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.musicVolume, Is.EqualTo(EXP_musicVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.sfxVolume, Is.EqualTo(EXP_sfxVolume).Using(FloatEqualityComparer.Instance));
@@ -214,7 +214,7 @@ public class Unittest_AudioSettingsManager
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        testAudioSettingsManager.SetAmbienceVolume(100f);
+        testAudioSettingsManager.SetAmbienceVolume(1f);
 
         //<-------------------------------- Test Expectation ---------------------------->//
         float OUT_audioMixerMasterVolume;
@@ -227,10 +227,10 @@ public class Unittest_AudioSettingsManager
         testAudioMixer.GetFloat(testAudioSettingsScriptableObject.ambienceVolumeParamName, out OUT_audioMixerAmbienceVolume);
         yield return null;
 
-        float EXP_masterVolume = 60f;
-        float EXP_musicVolume = 60f;
-        float EXP_sfxVolume = 60f;
-        float EXP_ambienceVolume = 100f;
+        float EXP_masterVolume = 0.6f;
+        float EXP_musicVolume = 0.6f;
+        float EXP_sfxVolume = 0.6f;
+        float EXP_ambienceVolume = 1f;
         Assert.That(testAudioSettingsScriptableObject.masterVolume, Is.EqualTo(EXP_masterVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.musicVolume, Is.EqualTo(EXP_musicVolume).Using(FloatEqualityComparer.Instance));
         Assert.That(testAudioSettingsScriptableObject.sfxVolume, Is.EqualTo(EXP_sfxVolume).Using(FloatEqualityComparer.Instance));

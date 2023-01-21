@@ -63,7 +63,7 @@ public class AudioSettingsManager : MonoBehaviour
         // Set the value to SO
         audioSettingsSO.masterVolume = arg_value;
         // Set the value to audio mixer
-        audioMixer.SetFloat(audioSettingsSO.masterVolumeParamName, MapValue(audioSettingsSO.masterVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        audioMixer.SetFloat(audioSettingsSO.masterVolumeParamName, MapValue(audioSettingsSO.masterVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
         // Send out event
         onMasterVolumeChangeEvent.Raise(audioSettingsSO.masterVolume);
     }
@@ -78,7 +78,7 @@ public class AudioSettingsManager : MonoBehaviour
         // Set the value to SO
         audioSettingsSO.musicVolume = arg_value;
         // Set the value to audio mixer
-        audioMixer.SetFloat(audioSettingsSO.musicVolumeParamName, MapValue(audioSettingsSO.musicVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        audioMixer.SetFloat(audioSettingsSO.musicVolumeParamName, MapValue(audioSettingsSO.musicVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
         // Send out event
         onMusicVolumeChangeEvent.Raise(audioSettingsSO.musicVolume);
     }
@@ -93,7 +93,7 @@ public class AudioSettingsManager : MonoBehaviour
         // Set the value to SO
         audioSettingsSO.sfxVolume = arg_value;
         // Set the value to audio mixer
-        audioMixer.SetFloat(audioSettingsSO.sfxVolumeParamName, MapValue(audioSettingsSO.sfxVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        audioMixer.SetFloat(audioSettingsSO.sfxVolumeParamName, MapValue(audioSettingsSO.sfxVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
         // Send out event
         onSFXVolumeChangeEvent.Raise(audioSettingsSO.sfxVolume);
     }
@@ -108,7 +108,7 @@ public class AudioSettingsManager : MonoBehaviour
         // Set the value to SO
         audioSettingsSO.ambienceVolume = arg_value;
         // Set the value to audio mixer
-        audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
         // Send out event
         onAmbienceVolumeChangeEvent.Raise(audioSettingsSO.ambienceVolume);
     }
@@ -126,10 +126,10 @@ public class AudioSettingsManager : MonoBehaviour
         audioSettingsSO.sfxVolume = audioSettingsSO.default_SFXVolume;
         audioSettingsSO.ambienceVolume = audioSettingsSO.default_AmbienceVolume;
 
-        audioMixer.SetFloat(audioSettingsSO.masterVolumeParamName, MapValue(audioSettingsSO.masterVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
-        audioMixer.SetFloat(audioSettingsSO.musicVolumeParamName, MapValue(audioSettingsSO.musicVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
-        audioMixer.SetFloat(audioSettingsSO.sfxVolumeParamName, MapValue(audioSettingsSO.sfxVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
-        audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumdB, audioSettingsSO.maximumdB));
+        audioMixer.SetFloat(audioSettingsSO.masterVolumeParamName, MapValue(audioSettingsSO.masterVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
+        audioMixer.SetFloat(audioSettingsSO.musicVolumeParamName, MapValue(audioSettingsSO.musicVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
+        audioMixer.SetFloat(audioSettingsSO.sfxVolumeParamName, MapValue(audioSettingsSO.sfxVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
+        audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
     }
 
     /// <summary>

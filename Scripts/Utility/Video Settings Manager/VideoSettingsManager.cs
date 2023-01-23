@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class VideoSettingsManager : MonoBehaviour
@@ -191,6 +192,63 @@ public class VideoSettingsManager : MonoBehaviour
 
         // Set the quality level from input
         QualitySettings.SetQualityLevel(arg_value);
+    }
+
+    /// <summary>
+    ///     Save video settings by serializing into JSON format
+    ///     TODO: To raise question whether to overwrite saved file
+    /// </summary>
+    /// <param name="arg_saveDir"></param>
+    /// <returns></returns>
+    public void SaveVideoSettings(string arg_saveDir)
+    {
+        string saveDir = arg_saveDir + "/playerVideoSettings";
+        string[] tempSplit = arg_saveDir.Split('/');
+        videoSettingsSO.saveFolder = tempSplit[tempSplit.Length - 2];
+        string saveFilePath = saveDir + "/videoSettingsSO.txt";
+
+        BinaryFormatter bf = new BinaryFormatter();
+
+        if (!Directory.Exists(saveDir))
+        {
+            Directory.CreateDirectory(saveDir);
+        }
+
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+        }
+
+        // Serialize Video Settings data
+        FileStream file = File.Create(saveFilePath);
+        var json = JsonUtility.ToJson(videoSettingsSO);
+        bf.Serialize(file, json);
+        file.Close();
+    }
+
+    /// <summary>
+    ///     Load video settings into existing scriptable object
+    /// </summary>
+    /// <param name="arg_savedSlotName"></param>
+    /// <returns></returns>
+    public bool LoadVideoSettings(string arg_savedSlotName)
+    {
+        Debug.Log("Save folder name: " + videoSettingsSO.saveFolder);
+        BinaryFormatter bf = new BinaryFormatter();
+
+        string savedFile = Application.persistentDataPath + "/" + videoSettingsSO.saveFolder + "/" + arg_savedSlotName + "/playerVideoSettings/videoSettingsSO.txt";
+        if (File.Exists(savedFile))
+        {
+            FileStream file = File.Open(savedFile, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), videoSettingsSO);
+
+            return true;
+        }
+        else
+        {
+            Debug.LogError("Error opening: " + savedFile + "\nNo such file exists!");
+            return false;
+        }
     }
     #endregion
 

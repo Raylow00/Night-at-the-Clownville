@@ -248,4 +248,28 @@ public class Unittest_AudioSettingsManager
         //<-------------------------------- Test TearDown ------------------------------->//
 
     }
+
+    [UnityTest]
+    public IEnumerator Unittest_AudioSettingsManager_SaveAudioSettings()
+    {
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testAudioSettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/AudioSettingsManager/Test Audio Settings Manager"));
+        AudioSettingsManager testAudioSettingsManager = testAudioSettingsManagerGameObject.GetComponent<AudioSettingsManager>();
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        string testSaveFolderName = "testSaveFolder";
+        string testSaveSlotName = "testSaveSlot";
+
+        testAudioSettingsManager.SaveAudioSettings(Application.persistentDataPath + "/" + testSaveFolderName + "/" + testSaveSlotName);
+        yield return null;
+
+        bool isGameSuccessfullyLoaded = testAudioSettingsManager.LoadAudioSettings(testSaveSlotName);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        Assert.IsTrue(isGameSuccessfullyLoaded == true);
+
+        //<-------------------------------- Test TearDown ------------------------------->//
+
+    }
 }

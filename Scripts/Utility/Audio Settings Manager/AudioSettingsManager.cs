@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -111,6 +114,64 @@ public class AudioSettingsManager : MonoBehaviour
         audioMixer.SetFloat(audioSettingsSO.ambienceVolumeParamName, MapValue(audioSettingsSO.ambienceVolume, audioSettingsSO.minimumVolume, audioSettingsSO.maximumVolume, audioSettingsSO.minimumDB, audioSettingsSO.maximumDB));
         // Send out event
         onAmbienceVolumeChangeEvent.Raise(audioSettingsSO.ambienceVolume);
+    }
+
+    /// <summary>
+    ///     Save audio settings by serializing into JSON format
+    ///     TODO: To raise question whether to overwrite saved file
+    /// </summary>
+    /// <param name="arg_saveDir"></param>
+    /// <returns></returns>
+    public void SaveAudioSettings(string arg_saveDir)
+    {
+        string saveDir = arg_saveDir + "/playerAudioSettings";
+        string[] tempSplit = arg_saveDir.Split('/');
+        audioSettingsSO.saveFolder = tempSplit[tempSplit.Length - 2];
+        string saveFilePath = saveDir + "/audioSettingsSO.txt";
+
+        BinaryFormatter bf = new BinaryFormatter();
+
+        if (!Directory.Exists(saveDir))
+        {
+            Directory.CreateDirectory(saveDir);
+        }
+        
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+        }
+
+        // Serialize Video Settings data
+        FileStream file = File.Create(saveFilePath);
+        var json = JsonUtility.ToJson(audioSettingsSO);
+        bf.Serialize(file, json);
+        file.Close();
+    }
+
+    /// <summary>
+    ///     Load audio settings into the existing scriptable object
+    /// </summary>
+    /// <param name="arg_savedSlotName"></param>
+    /// <returns></returns>
+    public bool LoadAudioSettings(string arg_savedSlotName)
+    {
+        Debug.Log("Save folder name: " + audioSettingsSO.saveFolder);
+
+        BinaryFormatter bf = new BinaryFormatter();
+
+        string savedFile = Application.persistentDataPath + "/" + audioSettingsSO.saveFolder + "/" + arg_savedSlotName + "/playerAudioSettings/audioSettingsSO.txt";
+        if (File.Exists(savedFile))
+        {
+            FileStream file = File.Open(savedFile, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), audioSettingsSO);
+
+            return true;
+        }
+        else
+        {
+            Debug.LogError("Error opening: " + savedFile + "\nNo such file exists!");
+            return false;
+        }
     }
     #endregion
 

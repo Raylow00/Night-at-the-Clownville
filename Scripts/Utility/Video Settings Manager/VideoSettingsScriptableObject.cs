@@ -38,4 +38,5 @@ public class VideoSettingsScriptableObject : ScriptableObject
         get => (int)VideoQuality.VIDEO_QUALITY_HIGH;
     }
     public int videoQualityIndex;
+    public string saveFolder;
 }

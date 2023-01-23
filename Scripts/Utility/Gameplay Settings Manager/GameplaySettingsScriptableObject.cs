@@ -50,4 +50,5 @@ public class GameplaySettingsScriptableObject : ScriptableObject
         get => 60f;
     }
     public float fieldOfView;
+    public string saveFolder;
 }

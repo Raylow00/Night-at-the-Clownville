@@ -4,6 +4,7 @@ public class Hintable : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private string hint;
+    [SerializeField] private StringEvent onHintSetEvent;
     #endregion
 
     #region Public Methods
@@ -27,6 +28,7 @@ public class Hintable : MonoBehaviour
     public void SetHint(string value)
     {
         hint = value;
+        onHintSetEvent.Raise(hint);
     }
     #endregion
 }

@@ -166,4 +166,30 @@ public class Unittest_GameplaySettingsManager
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testGameplaySettingsScriptableObject.fieldOfView == 65f);
     }
+
+    [UnityTest]
+    public IEnumerator Unittest_GameplaySettingsManager_SaveGameplaySettings()
+    {
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testGameplaySettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/GameplaySettingsManager/Test Gameplay Settings Manager"));
+        GameplaySettingsManager testGameplaySettingsManager = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>();
+        GameplaySettingsScriptableObject testGameplaySettingsScriptableObject = testGameplaySettingsManagerGameObject.GetComponent<GameplaySettingsManager>().GetScriptableObject();
+        yield return null;
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        string testSaveFolderName = "testSaveFolder";
+        string testSaveSlotName = "testSaveSlot";
+
+        testGameplaySettingsManager.SaveGameplaySettings(Application.persistentDataPath + "/" + testSaveFolderName + "/" + testSaveSlotName);
+        yield return null;
+
+        bool isGameSuccessfullyLoaded = testGameplaySettingsManager.LoadGameplaySettings(testSaveSlotName);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        Assert.IsTrue(isGameSuccessfullyLoaded == true);
+
+        //<-------------------------------- Test TearDown ------------------------------->//
+
+    }
 }

@@ -252,4 +252,29 @@ public class Unittest_VideoSettingsManager
 
         Assert.IsTrue(videoQualityIndex == 2);
     }
+
+    [UnityTest]
+    public IEnumerator Unittest_VideoSettingsManager_SaveVideoSettings()
+    {
+        //<-------------------------------- Test Setup ---------------------------------->//
+        testVideoSettingsManagerGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Utility/VideoSettingsManager/Test Video Settings Manager"));
+        VideoSettingsManager testVideoSettingsManager = testVideoSettingsManagerGameObject.GetComponent<VideoSettingsManager>();
+        yield return null;
+
+        //<-------------------------------- Test Execution ------------------------------>//
+        string testSaveFolderName = "testSaveFolder";
+        string testSaveSlotName = "testSaveSlot";
+
+        testVideoSettingsManager.SaveVideoSettings(Application.persistentDataPath + "/" + testSaveFolderName + "/" + testSaveSlotName);
+        yield return null;
+
+        bool isGameSuccessfullyLoaded = testVideoSettingsManager.LoadVideoSettings(testSaveSlotName);
+        yield return null;
+
+        //<-------------------------------- Test Expectation ---------------------------->//
+        Assert.IsTrue(isGameSuccessfullyLoaded == true);
+
+        //<-------------------------------- Test TearDown ------------------------------->//
+
+    }
 }

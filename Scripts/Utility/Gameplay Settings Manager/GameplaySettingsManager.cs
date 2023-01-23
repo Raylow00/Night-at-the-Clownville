@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -177,7 +180,65 @@ public class GameplaySettingsManager : MonoBehaviour
 
         // Send out the new field of view
         onFieldOfViewChangeEvent.Raise(arg_value);
-    }    
+    }
+
+    /// <summary>
+    ///     Save gameplay settings by serializing into JSON format
+    ///     TODO: To raise question whether to overwrite saved file
+    /// </summary>
+    /// <param name="arg_saveDir"></param>
+    /// <returns></returns>
+    public void SaveGameplaySettings(string arg_saveDir)
+    {
+        string saveDir = arg_saveDir + "/playerGameplaySettings";
+        string[] tempSplit = arg_saveDir.Split('/');
+        gameplaySettingsSO.saveFolder = tempSplit[tempSplit.Length - 2];
+        string saveFilePath = saveDir + "/gameplaySettingsSO.txt";
+
+        BinaryFormatter bf = new BinaryFormatter();
+
+        if (!Directory.Exists(saveDir))
+        {
+            Directory.CreateDirectory(saveDir);
+        }
+
+        if (File.Exists(saveFilePath))
+        {
+            File.Delete(saveFilePath);
+        }
+
+        // Serialize Video Settings data
+        FileStream file = File.Create(saveFilePath);
+        var json = JsonUtility.ToJson(gameplaySettingsSO);
+        bf.Serialize(file, json);
+        file.Close();
+    }
+
+    /// <summary>
+    ///     Load gameplay settings into the existing scriptable object
+    /// </summary>
+    /// <param name="arg_savedSlotName"></param>
+    /// <returns></returns>
+    public bool LoadGameplaySettings(string arg_savedSlotName)
+    {
+        Debug.Log("Save folder name: " + gameplaySettingsSO.saveFolder);
+
+        BinaryFormatter bf = new BinaryFormatter();
+
+        string savedFile = Application.persistentDataPath + "/" + gameplaySettingsSO.saveFolder + "/" + arg_savedSlotName + "/playerGameplaySettings/gameplaySettingsSO.txt";
+        if (File.Exists(savedFile))
+        {
+            FileStream file = File.Open(savedFile, FileMode.Open);
+            JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), gameplaySettingsSO);
+
+            return true;
+        }
+        else
+        {
+            Debug.LogError("Error opening: " + savedFile + "\nNo such file exists!");
+            return false;
+        }
+    }
     #endregion
 
     #region Private Methods

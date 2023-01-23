@@ -30,4 +30,5 @@ public class AudioSettingsScriptableObject : ScriptableObject
     [Range(0f, 1f)]
     public float ambienceVolume;
     public float default_AmbienceVolume { get => 0.6f; }
+    public string saveFolder;
 }

@@ -1,18 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
+public enum GameState
+{
+    GAME_STARTED,   // will not transition to GAME_ONGOING if no other state(PAUSE, SAVED and QUIT) is invoked
+    GAME_PAUSED,    // will transition to GAME_ONGOING if current state is already GAME_PAUSED
+    GAME_ONGOING,   // will transition to GAME_PAUSED if current state is already GAME_ONGOING
+    GAME_SAVED,     // will transition to GAME_SAVED and remain if no other state(PAUSE and QUIT) is invoked
+    GAME_QUIT       // will transition to GAME_QUIT if invoked
+}
+
 public class GameStateManager : MonoBehaviour
 {
-    #region Game State Enumeration
-    private enum GameState
-    {
-        GAME_STARTED,   // will not transition to GAME_ONGOING if no other state(PAUSE, SAVED and QUIT) is invoked
-        GAME_PAUSED,    // will transition to GAME_ONGOING if current state is already GAME_PAUSED
-        GAME_ONGOING,   // will transition to GAME_PAUSED if current state is already GAME_ONGOING
-        GAME_SAVED,     // will transition to GAME_SAVED and remain if no other state(PAUSE and QUIT) is invoked
-        GAME_QUIT       // will transition to GAME_QUIT if invoked
-    }
-    #endregion
 
     #region Serialized Fields
     [SerializeField] private GameStateScriptableObject gameStateSO;
@@ -67,9 +66,14 @@ public class GameStateManager : MonoBehaviour
                     Time.timeScale = 0f;
                 }
                 // if game state is already PAUSED, resume the game
-                else
+                else if (currGameState == (int)GameState.GAME_PAUSED &&
+                         currGameState != (int)GameState.GAME_QUIT)
                 {
                     ProcessGameState((int)GameState.GAME_ONGOING);
+                }
+                else
+                {
+                    // Do nothing if already QUIT
                 }
                 
                 break;
@@ -92,9 +96,14 @@ public class GameStateManager : MonoBehaviour
                     Time.timeScale = 1f;
                 }
                 // if game state is already ONGOING, pause the game
-                else
+                else if (currGameState == (int)GameState.GAME_ONGOING &&
+                         currGameState != (int)GameState.GAME_QUIT)
                 {
                     ProcessGameState((int)GameState.GAME_PAUSED);
+                }
+                else
+                {
+                    // Do nothing if already QUIT
                 }
 
                 break;
@@ -118,6 +127,11 @@ public class GameStateManager : MonoBehaviour
                 // Do nothing
                 break;
         }
+    }
+
+    public GameStateScriptableObject GetScriptableObject()
+    {
+        return gameStateSO;
     }
     #endregion
 

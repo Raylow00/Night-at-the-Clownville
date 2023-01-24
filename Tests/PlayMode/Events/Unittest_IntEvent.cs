@@ -7,9 +7,10 @@ using UnityEngine.TestTools;
 public class Unittest_IntEvent
 {
     private GameObject testGameEventGameObject;
+    static int[] arg_intValues = new int[] { 1, 5, 6 };
 
     [UnityTest]
-    public IEnumerator Unittest_IntEvent_RaiseEvent_ListenEvent()
+    public IEnumerator Unittest_IntEvent_RaiseEvent_ListenEvent([ValueSource(nameof(arg_intValues))] int arg_value)
     {
         //<-------------------------------- Test Setup ---------------------------------->//
         testGameEventGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Events/Test Game Event Game Object"));
@@ -18,7 +19,7 @@ public class Unittest_IntEvent
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        // Event trigger set to trigger on start -> value given in Editor
+        testEventTrigger.TriggerEvent(arg_value);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//

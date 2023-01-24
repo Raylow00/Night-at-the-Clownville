@@ -3,10 +3,10 @@ using UnityEngine;
 
 public enum GameState
 {
-    GAME_STARTED,   // will not transition to GAME_ONGOING if no other state(PAUSE, SAVED and QUIT) is invoked
-    GAME_PAUSED,    // will transition to GAME_ONGOING if current state is already GAME_PAUSED
+    GAME_START,   // will not transition to GAME_ONGOING if no other state(PAUSE, SAVED and QUIT) is invoked
+    GAME_PAUSE,    // will transition to GAME_ONGOING if current state is already GAME_PAUSED
     GAME_ONGOING,   // will transition to GAME_PAUSED if current state is already GAME_ONGOING
-    GAME_SAVED,     // will transition to GAME_SAVED and remain if no other state(PAUSE and QUIT) is invoked
+    GAME_SAVE,     // will transition to GAME_SAVED and remain if no other state(PAUSE and QUIT) is invoked
     GAME_QUIT       // will transition to GAME_QUIT if invoked
 }
 
@@ -15,6 +15,7 @@ public class GameStateManager : MonoBehaviour
 
     #region Serialized Fields
     [SerializeField] private GameStateScriptableObject gameStateSO;
+    [SerializeField] private VoidEvent onGameStartEvent;
     [SerializeField] private IntEvent onGamePauseEvent;
     [SerializeField] private VoidEvent onGameQuitEvent;
     [SerializeField] private VoidEvent onGameSaveRequestEvent;
@@ -22,7 +23,7 @@ public class GameStateManager : MonoBehaviour
 
     void Start()
     {
-        SaveGameStates((int)GameState.GAME_STARTED, (int)GameState.GAME_STARTED);
+        SaveGameStates((int)GameState.GAME_START, (int)GameState.GAME_START);
         ProcessGameState((int)GameState.GAME_ONGOING);
     }
 
@@ -52,12 +53,14 @@ public class GameStateManager : MonoBehaviour
         switch (arg_state)
         {
             case 0:
-                // Do nothing
+                // Send out game start event to 
+                // reset player and missions
+                onGameStartEvent.Raise();
                 break;
 
             case 1:
                 // pause game if not PAUSED / QUIT
-                if (currGameState != (int)GameState.GAME_PAUSED &&
+                if (currGameState != (int)GameState.GAME_PAUSE &&
                     currGameState != (int)GameState.GAME_QUIT)
                 {
                     // Raise event first before STOPPING everything
@@ -66,7 +69,7 @@ public class GameStateManager : MonoBehaviour
                     Time.timeScale = 0f;
                 }
                 // if game state is already PAUSED, resume the game
-                else if (currGameState == (int)GameState.GAME_PAUSED &&
+                else if (currGameState == (int)GameState.GAME_PAUSE &&
                          currGameState != (int)GameState.GAME_QUIT)
                 {
                     ProcessGameState((int)GameState.GAME_ONGOING);
@@ -82,7 +85,7 @@ public class GameStateManager : MonoBehaviour
                 // Process game state to ONGOING if already started
                 // prevGameState == STARTED
                 // currGameState == ONGOING
-                if (currGameState == (int)GameState.GAME_STARTED)
+                if (currGameState == (int)GameState.GAME_START)
                 {
                     SaveGameStates(arg_state, currGameState);
                 }
@@ -99,7 +102,7 @@ public class GameStateManager : MonoBehaviour
                 else if (currGameState == (int)GameState.GAME_ONGOING &&
                          currGameState != (int)GameState.GAME_QUIT)
                 {
-                    ProcessGameState((int)GameState.GAME_PAUSED);
+                    ProcessGameState((int)GameState.GAME_PAUSE);
                 }
                 else
                 {

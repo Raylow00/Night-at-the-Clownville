@@ -7,9 +7,10 @@ using UnityEngine.TestTools;
 public class Unittest_FloatEvent
 {
     private GameObject testGameEventGameObject;
+    static float[] arg_floatValues = new float[] { 0.1f, 0.5f, 0.6f, 1.5f };
 
     [UnityTest]
-    public IEnumerator Unittest_FloatEvent_RaiseEvent_ListenEvent()
+    public IEnumerator Unittest_FloatEvent_RaiseEvent_ListenEvent([ValueSource(nameof(arg_floatValues))] float arg_value)
     {
         //<-------------------------------- Test Setup ---------------------------------->//
         testGameEventGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Events/Test Game Event Game Object"));
@@ -18,7 +19,7 @@ public class Unittest_FloatEvent
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        // Event trigger set to trigger on start -> value given in Editor
+        testEventTrigger.TriggerEvent(arg_value);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//

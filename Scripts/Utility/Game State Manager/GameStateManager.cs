@@ -23,8 +23,8 @@ public class GameStateManager : MonoBehaviour
 
     void Start()
     {
-        SaveGameStates((int)GameState.GAME_START, (int)GameState.GAME_START);
-        ProcessGameState((int)GameState.GAME_ONGOING);
+        SaveGameStates(GameState.GAME_START, GameState.GAME_START);
+        ProcessGameState(GameState.GAME_ONGOING);
     }
 
     #region Public Methods
@@ -45,23 +45,23 @@ public class GameStateManager : MonoBehaviour
     ///     
     /// </summary>
     /// <param name="arg_state"></param>
-    public void ProcessGameState(int arg_state)
+    public void ProcessGameState(GameState arg_state)
     {
         // Cache current game state
-        int currGameState = gameStateSO.currentGameState;
+        GameState currGameState = gameStateSO.currentGameState;
         
         switch (arg_state)
         {
-            case 0:
+            case GameState.GAME_START:
                 // Send out game start event to 
                 // reset player and missions
                 onGameStartEvent.Raise();
                 break;
 
-            case 1:
+            case GameState.GAME_PAUSE:
                 // pause game if not PAUSED / QUIT
-                if (currGameState != (int)GameState.GAME_PAUSE &&
-                    currGameState != (int)GameState.GAME_QUIT)
+                if (currGameState != GameState.GAME_PAUSE &&
+                    currGameState != GameState.GAME_QUIT)
                 {
                     // Raise event first before STOPPING everything
                     onGamePauseEvent.Raise(1);
@@ -69,10 +69,10 @@ public class GameStateManager : MonoBehaviour
                     Time.timeScale = 0f;
                 }
                 // if game state is already PAUSED, resume the game
-                else if (currGameState == (int)GameState.GAME_PAUSE &&
-                         currGameState != (int)GameState.GAME_QUIT)
+                else if (currGameState == GameState.GAME_PAUSE &&
+                         currGameState != GameState.GAME_QUIT)
                 {
-                    ProcessGameState((int)GameState.GAME_ONGOING);
+                    ProcessGameState(GameState.GAME_ONGOING);
                 }
                 else
                 {
@@ -81,17 +81,17 @@ public class GameStateManager : MonoBehaviour
                 
                 break;
 
-            case 2:
+            case GameState.GAME_ONGOING:
                 // Process game state to ONGOING if already started
                 // prevGameState == STARTED
                 // currGameState == ONGOING
-                if (currGameState == (int)GameState.GAME_START)
+                if (currGameState == GameState.GAME_START)
                 {
                     SaveGameStates(arg_state, currGameState);
                 }
                 // resume the game if not ONGOING / QUIT
-                else if (currGameState != (int)GameState.GAME_ONGOING &&
-                    currGameState != (int)GameState.GAME_QUIT)
+                else if (currGameState != GameState.GAME_ONGOING &&
+                    currGameState != GameState.GAME_QUIT)
                 {
                     // Raise event first before RESUMING everything
                     onGamePauseEvent.Raise(0);
@@ -99,10 +99,10 @@ public class GameStateManager : MonoBehaviour
                     Time.timeScale = 1f;
                 }
                 // if game state is already ONGOING, pause the game
-                else if (currGameState == (int)GameState.GAME_ONGOING &&
-                         currGameState != (int)GameState.GAME_QUIT)
+                else if (currGameState == GameState.GAME_ONGOING &&
+                         currGameState != GameState.GAME_QUIT)
                 {
-                    ProcessGameState((int)GameState.GAME_PAUSE);
+                    ProcessGameState(GameState.GAME_PAUSE);
                 }
                 else
                 {
@@ -111,13 +111,13 @@ public class GameStateManager : MonoBehaviour
 
                 break;
 
-            case 3:
+            case GameState.GAME_SAVE:
                 onGameSaveRequestEvent.Raise();
                 SaveGameStates(arg_state, currGameState);
 
                 break;
 
-            case 4:
+            case GameState.GAME_QUIT:
                 // Raise event first before quitting application
                 onGameQuitEvent.Raise();
                 SaveGameStates(arg_state, currGameState);
@@ -144,7 +144,7 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     /// <param name="arg_currState"></param>
     /// <param name="arg_prevState"></param>
-    private void SaveGameStates(int arg_currState, int arg_prevState)
+    private void SaveGameStates(GameState arg_currState, GameState arg_prevState)
     {
         gameStateSO.currentGameState = arg_currState;
         gameStateSO.previousGameState = arg_prevState;

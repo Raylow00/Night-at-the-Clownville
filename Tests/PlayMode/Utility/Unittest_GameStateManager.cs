@@ -24,8 +24,8 @@ public class Unittest_GameStateManager
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -40,12 +40,12 @@ public class Unittest_GameStateManager
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
-        testGameStateManager.ProcessGameState(0);
+        testGameStateManager.ProcessGameState(GameState.GAME_START);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -63,31 +63,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(2);
+        testGameStateManager.ProcessGameState(GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_PAUSE
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_PAUSE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -105,20 +105,20 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_QUIT
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
     }
 
     [UnityTest]
@@ -136,19 +136,19 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(2);
+        testGameStateManager.ProcessGameState(GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
     }
 
     [UnityTest]
@@ -166,19 +166,19 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
     }
 
     [UnityTest]
@@ -196,31 +196,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(2);
+        testGameStateManager.ProcessGameState(GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_PAUSE
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_PAUSE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -238,31 +238,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE again
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_PAUSE
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_PAUSE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -280,30 +280,30 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_SAVE
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_PAUSE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
     }
 
     [UnityTest]
@@ -321,30 +321,30 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_QUIT
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_PAUSE
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_PAUSE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
     }
 
 
@@ -363,31 +363,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE again
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_PAUSE
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
     }
 
     [UnityTest]
@@ -405,31 +405,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_QUIT
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(2);
+        testGameStateManager.ProcessGameState(GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
     }
 
     [UnityTest]
@@ -447,31 +447,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_QUIT
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_SAVE
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_QUIT
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_QUIT);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
     }
 
     [UnityTest]
@@ -489,31 +489,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_SAVE
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_PAUSE
-        testGameStateManager.ProcessGameState(1);
+        testGameStateManager.ProcessGameState(GameState.GAME_PAUSE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_SAVE
         // Current game state => GAME_PAUSE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_SAVE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_PAUSE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_PAUSE);
     }
 
     [UnityTest]
@@ -531,31 +531,31 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_SAVE
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_ONGOING
-        testGameStateManager.ProcessGameState(2);
+        testGameStateManager.ProcessGameState(GameState.GAME_ONGOING);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_SAVE
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_SAVE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
     }
 
     [UnityTest]
@@ -573,30 +573,30 @@ public class Unittest_GameStateManager
         // On start
         // Previous game state => GAME_START
         // Current game state => GAME_ONGOING
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_START);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_START);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_ONGOING);
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_SAVED
-        testGameStateManager.ProcessGameState(3);
+        testGameStateManager.ProcessGameState(GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_ONGOING
         // Current game state => GAME_SAVE
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_ONGOING);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_ONGOING);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_SAVE);
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
         // Set game state to GAME_QUIT
-        testGameStateManager.ProcessGameState(4);
+        testGameStateManager.ProcessGameState(GameState.GAME_QUIT);
         yield return null;
 
         //<-------------------------------- Test Expectation ---------------------------->//
         // Previous game state => GAME_SAVE
         // Current game state => GAME_QUIT
-        Assert.IsTrue(testGameStateScriptableObject.previousGameState == (int)GameState.GAME_SAVE);
-        Assert.IsTrue(testGameStateScriptableObject.currentGameState == (int)GameState.GAME_QUIT);
+        Assert.IsTrue(testGameStateScriptableObject.previousGameState == GameState.GAME_SAVE);
+        Assert.IsTrue(testGameStateScriptableObject.currentGameState == GameState.GAME_QUIT);
     }
 }

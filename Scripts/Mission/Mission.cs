@@ -1,3 +1,19 @@
+/// State Machine Diagram
+/*
+    idle --> init 
+    init --> idle
+
+    init --> ongoing
+
+    ongoing --> reset
+    ongoing --> failed
+    ongoing --> complete
+
+    reset --> init
+
+    complete --> idle
+    failed --> idle
+*/
 public enum MissionState
 {
     MISSION_IDLE,       // no mission is ongoing
@@ -49,7 +65,7 @@ public class Mission
     ///     Set mission state according to the preconditions
     /// </summary>
     /// <param name="arg_newState"></param>
-    public void SetMissionState(MissionState arg_newState)
+    public MissionState SetMissionState(MissionState arg_newState)
     {
         switch (arg_newState)
         {
@@ -95,6 +111,8 @@ public class Mission
                 currMissionState = MissionState.MISSION_IDLE;
                 break;
         }
+
+        return currMissionState;
     }
     #endregion
 }

@@ -6,6 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameStateScriptableObject", menuName = "Utility/Game State/Game State")]
 public class GameStateScriptableObject : ScriptableObject
 {
-    public int previousGameState;
-    public int currentGameState;
+    public GameState previousGameState;
+    public GameState currentGameState;
 }

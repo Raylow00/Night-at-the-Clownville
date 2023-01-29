@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     #region Serialized Fields
-    [SerializeField] private FloatEvent onHealthChangeEvent;
-    [SerializeField] private VoidEvent onHealthZeroEvent;
+    [SerializeField] private TextViewer textViewer;
     #endregion
 
     #region Private Fields
@@ -22,7 +19,12 @@ public class EnemyHealth : MonoBehaviour
     {
         currHealth = maxHealth;
         isHealthZero = false;
-        onHealthChangeEvent.Raise(currHealth);
+
+        // Sets the current health on UI
+        if (textViewer != null)
+        {
+            textViewer.SetText(currHealth);
+        }
     }
 
     /// <summary>
@@ -50,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
     ///     Add value to health if not already maximum
     /// </summary>
     /// <param name="arg_increment"></param>
-    public void AddHealth(int arg_increment)
+    public void AddHealth(float arg_increment)
     {
         if (currHealth >= maxHealth)
         {
@@ -63,8 +65,12 @@ public class EnemyHealth : MonoBehaviour
             {
                 currHealth = maxHealth;
             }
+        }
 
-            onHealthChangeEvent.Raise(currHealth);
+        // Sets the current health on UI
+        if (textViewer != null)
+        {
+            textViewer.SetText(currHealth);
         }
     }
 
@@ -72,28 +78,31 @@ public class EnemyHealth : MonoBehaviour
     ///     Decrement value from health if not already zero
     /// </summary>
     /// <param name="arg_damage"></param>
-    public void TakeDamage(int arg_damage)
+    public void TakeDamage(float arg_damage)
     {
         if (isHealthZero)
         {
-            onHealthZeroEvent.Raise();
             return;
         }
         else
         {
             currHealth -= arg_damage;
-            if (currHealth <= 0)
+            if (currHealth <= 0f)
             {
                 isHealthZero = true;
-                currHealth = 0;
+                currHealth = 0f;
             }
 
             if (isHealthZero)
             {
-                onHealthZeroEvent.Raise();
+                return;
             }
+        }
 
-            onHealthChangeEvent.Raise(currHealth);
+        // Sets the current health on UI
+        if (textViewer != null)
+        {
+            textViewer.SetText(currHealth);
         }
     }
 

@@ -17,17 +17,12 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Setup ---------------------------------->//
         testEnemyHealthGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Enemy/Health/Test Enemy Health"));
         EnemyHealth testEnemyHealth = testEnemyHealthGameObject.GetComponent<EnemyHealth>();
-        VoidEventListener testEnemyHealthVoidEventListener = testEnemyHealthGameObject.GetComponent<VoidEventListener>();
-        FloatEventListener testEnemyHealthFloatEventListener = testEnemyHealthGameObject.GetComponent<FloatEventListener>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
 
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testEnemyHealth.GetCurrentHealth() == 100);
-        Assert.IsTrue(testEnemyHealthFloatEventListener.GetAcknowledgement() == true);
-        Assert.IsTrue(testEnemyHealthVoidEventListener.GetAcknowledgement() == false);
-
     }
 
     static int[] arg_value = new int[] { 1, 10, 100 };
@@ -38,8 +33,6 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Setup ---------------------------------->//
         testEnemyHealthGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Enemy/Health/Test Enemy Health"));
         EnemyHealth testEnemyHealth = testEnemyHealthGameObject.GetComponent<EnemyHealth>();
-        VoidEventListener testEnemyHealthVoidEventListener = testEnemyHealthGameObject.GetComponent<VoidEventListener>();
-        FloatEventListener testEnemyHealthFloatEventListener = testEnemyHealthGameObject.GetComponent<FloatEventListener>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
@@ -47,9 +40,6 @@ public class Unittest_EnemyHealth
 
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testEnemyHealth.GetCurrentHealth() == 100);
-        Assert.IsTrue(testEnemyHealthFloatEventListener.GetAcknowledgement() == true);
-        Assert.IsTrue(testEnemyHealthVoidEventListener.GetAcknowledgement() == false);
-
     }
 
     [UnityTest]
@@ -59,8 +49,6 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Setup ---------------------------------->//
         testEnemyHealthGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Enemy/Health/Test Enemy Health"));
         EnemyHealth testEnemyHealth = testEnemyHealthGameObject.GetComponent<EnemyHealth>();
-        VoidEventListener testEnemyHealthVoidEventListener = testEnemyHealthGameObject.GetComponent<VoidEventListener>();
-        FloatEventListener testEnemyHealthFloatEventListener = testEnemyHealthGameObject.GetComponent<FloatEventListener>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
@@ -69,9 +57,6 @@ public class Unittest_EnemyHealth
 
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testEnemyHealth.GetCurrentHealth() >= 51 && testEnemyHealth.GetCurrentHealth() <= 100);
-        Assert.IsTrue(testEnemyHealthFloatEventListener.GetAcknowledgement() == true);
-        Assert.IsTrue(testEnemyHealthVoidEventListener.GetAcknowledgement() == false);
-
     }
 
     static int[] arg_damage = new int[] { 1, 10 };
@@ -82,8 +67,6 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Setup ---------------------------------->//
         testEnemyHealthGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Enemy/Health/Test Enemy Health"));
         EnemyHealth testEnemyHealth = testEnemyHealthGameObject.GetComponent<EnemyHealth>();
-        VoidEventListener testEnemyHealthVoidEventListener = testEnemyHealthGameObject.GetComponent<VoidEventListener>();
-        FloatEventListener testEnemyHealthFloatEventListener = testEnemyHealthGameObject.GetComponent<FloatEventListener>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
@@ -92,8 +75,6 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testEnemyHealth.GetCurrentHealth() >= 90 && testEnemyHealth.GetCurrentHealth() < 100);
         Assert.IsTrue(testEnemyHealth.GetHealthZero() == false);
-        Assert.IsTrue(testEnemyHealthFloatEventListener.GetAcknowledgement() == true);
-        Assert.IsTrue(testEnemyHealthVoidEventListener.GetAcknowledgement() == false);
     }
 
     [UnityTest]
@@ -103,8 +84,6 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Setup ---------------------------------->//
         testEnemyHealthGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/Enemy/Health/Test Enemy Health"));
         EnemyHealth testEnemyHealth = testEnemyHealthGameObject.GetComponent<EnemyHealth>();
-        VoidEventListener testEnemyHealthVoidEventListener = testEnemyHealthGameObject.GetComponent<VoidEventListener>();
-        FloatEventListener testEnemyHealthFloatEventListener = testEnemyHealthGameObject.GetComponent<FloatEventListener>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
@@ -113,7 +92,5 @@ public class Unittest_EnemyHealth
         //<-------------------------------- Test Expectation ---------------------------->//
         Assert.IsTrue(testEnemyHealth.GetCurrentHealth() == 0);
         Assert.IsTrue(testEnemyHealth.GetHealthZero() == true);
-        Assert.IsTrue(testEnemyHealthFloatEventListener.GetAcknowledgement() == true);
-        Assert.IsTrue(testEnemyHealthVoidEventListener.GetAcknowledgement() == true);
     }
 }

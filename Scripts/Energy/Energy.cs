@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Energy : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private TextViewer textViewer;
@@ -10,100 +10,99 @@ public class Health : MonoBehaviour
     // These are not in a scriptable object because
     // there could be multiple enemies
     // and it would require one scriptable object for each entity
-    private float currHealth;
-    private float maxHealth = 100;
-    private bool isHealthZero;
+    private float currEnergy;
+    private float maxEnergy = 100;
+    private bool isEnergyZero;
     #endregion
 
     void Start()
     {
-        currHealth = maxHealth;
-        isHealthZero = false;
+        currEnergy = maxEnergy;
+        isEnergyZero = false;
 
-        // Sets the current health on UI
+        // Sets the current energy on UI
         if (textViewer != null)
         {
-            textViewer.SetText(currHealth);
+            textViewer.SetText(currEnergy);
         }
     }
 
     /// <summary>
-    ///     Gets the current health
+    ///     Gets the current energy
     /// </summary>
     /// <returns></returns>
-    public float GetCurrentHealth()
+    public float GetCurrentEnergy()
     {
-        return currHealth;
+        return currEnergy;
     }
 
     /// <summary>
-    ///     Returns whether health is zero
+    ///     Returns whether energy is zero
     /// </summary>
     /// <returns>
     ///     True if zero
     ///     False otherwise
     /// </returns>
-    public bool GetHealthZero()
+    public bool GetEnergyZero()
     {
-        return isHealthZero;
+        return isEnergyZero;
     }
 
     /// <summary>
-    ///     Add value to health if not already maximum
+    ///     Add value to energy if not already maximum
     /// </summary>
     /// <param name="arg_increment"></param>
-    public void AddHealth(float arg_increment)
+    public void IncreaseEnergy(float arg_increment)
     {
-        if (currHealth >= maxHealth)
+        if (currEnergy >= maxEnergy)
         {
             return;
         }
         else
         {
-            currHealth += arg_increment;
-            if (currHealth >= maxHealth)
+            currEnergy += arg_increment;
+            if (currEnergy >= maxEnergy)
             {
-                currHealth = maxHealth;
+                currEnergy = maxEnergy;
             }
         }
 
         // Sets the current health on UI
         if (textViewer != null)
         {
-            textViewer.SetText(currHealth);
+            textViewer.SetText(currEnergy);
         }
     }
 
     /// <summary>
-    ///     Decrement value from health if not already zero
+    ///     Decrement value from energy if not already zero
     /// </summary>
     /// <param name="arg_damage"></param>
-    public void TakeDamage(float arg_damage)
+    public void DecreaseEnergy(float arg_damage)
     {
-        if (isHealthZero)
+        if (isEnergyZero)
         {
             return;
         }
         else
         {
-            currHealth -= arg_damage;
-            if (currHealth <= 0f)
+            currEnergy -= arg_damage;
+            if (currEnergy <= 0f)
             {
-                isHealthZero = true;
-                currHealth = 0f;
+                isEnergyZero = true;
+                currEnergy = 0f;
             }
 
-            if (isHealthZero)
+            if (isEnergyZero)
             {
                 return;
             }
         }
 
-        // Sets the current health on UI
+        // Sets the current energy on UI
         if (textViewer != null)
         {
-            textViewer.SetText(currHealth);
+            textViewer.SetText(currEnergy);
         }
     }
-
 }

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWaveSpawner : MonoBehaviour
 {
+    #region Serialized Fields
     [Header("Enemy Wave")]
     public EnemyWave enemyWave;
 
@@ -16,9 +15,12 @@ public class EnemyWaveSpawner : MonoBehaviour
     [Header("Events")]
     [SerializeField] private VoidEvent onEnemyWaveSpawnEvent;
     [SerializeField] private VoidEvent onEnemyWaveClearEvent;
+    #endregion
 
+    #region Private Fields
     private int enemyCount = 0;
     private bool isEnemyWaveCleared = false;
+    #endregion
 
     void OnDrawGizmosSelected()
     {
@@ -28,21 +30,37 @@ public class EnemyWaveSpawner : MonoBehaviour
     }
 
     #region Public Methods
+    /// <summary>
+    ///     Get whether enemy wave is cleared
+    /// </summary>
+    /// <returns>
+    ///     isEnemyWaveCleared
+    /// </returns>
     public bool GetIsEnemyWaveCleared()
     {
         return isEnemyWaveCleared;
     }
 
+    /// <summary>
+    ///     Returns the enemy wave to get the current number of enemies
+    /// </summary>
+    /// <returns>
+    ///     enemyWave
+    /// </returns>
     public EnemyWave GetEnemyWave()
     {
         return enemyWave;
     }
 
+    /// <summary>
+    ///     Spawns an enemy wave that can include multiple enemy types
+    ///     and keeps track of the number of enemies in the scene
+    /// </summary>
     public void SpawnEnemyWave()
     {
         foreach (EnemyTypeInWave enemyType in enemyWave.enemyTypes)
         {
-            for (int i = 0; i < enemyType.numberOfEnemyInWaveToSpawn; i++)
+            for (int i = 0; i < enemyType.numberOfEnemyTypeToSpawn; i++)
             {
                 Vector3 spawnPoint = SpawnRandomPointsInBox();
                 GameObject spawnedEnemy = Instantiate(enemyType.enemyPrefab, spawnPoint, Quaternion.identity);
@@ -54,6 +72,12 @@ public class EnemyWaveSpawner : MonoBehaviour
         onEnemyWaveSpawnEvent.Raise();
     }
 
+    /// <summary>
+    ///     Decrement the number of enemy in this wave
+    /// </summary>
+    /// <returns>
+    ///     enemyCount
+    /// </returns>
     public int DecrementEnemyInWave()
     {
         enemyCount -= 1;
@@ -75,6 +99,12 @@ public class EnemyWaveSpawner : MonoBehaviour
     #endregion
 
     #region Private Methods
+    /// <summary>
+    ///     Returns a Vector3 point randomly in a box given by a transform
+    /// </summary>
+    /// <returns>
+    ///     Vector3 spawnPoint
+    /// </returns>
     private Vector3 SpawnRandomPointsInBox()
     {
         return centerPoint.position + new Vector3(

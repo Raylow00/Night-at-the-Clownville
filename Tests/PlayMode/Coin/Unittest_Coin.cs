@@ -27,7 +27,7 @@ public class Unittest_Coin
 
     static int[] arg_value = new int[] { 1, 10, 100 };
     [UnityTest]
-    public IEnumerator Unittest_Health_AddHealth_NoChange([ValueSource(nameof(arg_value))] int arg_increment)
+    public IEnumerator Unittest_Coin_AddCoin_NoChange([ValueSource(nameof(arg_value))] int arg_increment)
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
@@ -43,7 +43,7 @@ public class Unittest_Coin
     }
 
     [UnityTest]
-    public IEnumerator Unittest_Health_AddHealth([ValueSource(nameof(arg_value))] int arg_increment)
+    public IEnumerator Unittest_Coin_AddCoin([ValueSource(nameof(arg_value))] int arg_increment)
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
@@ -61,7 +61,7 @@ public class Unittest_Coin
 
     static int[] arg_damage = new int[] { 1, 10 };
     [UnityTest]
-    public IEnumerator Unittest_Health_TakeDamage([ValueSource(nameof(arg_damage))] int arg_damage)
+    public IEnumerator Unittest_Coin_UseCoin([ValueSource(nameof(arg_damage))] int arg_damage)
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
@@ -78,7 +78,7 @@ public class Unittest_Coin
     }
 
     [UnityTest]
-    public IEnumerator Unittest_Health_TakeDamage_ReachZero()
+    public IEnumerator Unittest_Coin_UseCoin_ReachZero()
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//

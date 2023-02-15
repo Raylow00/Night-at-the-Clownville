@@ -8,6 +8,7 @@ public class ScreenshotHandler : MonoBehaviour
     private bool toTakeScreenshotOnNextFrame;
     private bool isScreenshotTaken;
     private int screenshotIndex;
+    private string lastSavedPath;
     #endregion
 
     void Start()
@@ -26,6 +27,11 @@ public class ScreenshotHandler : MonoBehaviour
     }
 
     #region Public Methods
+    public void SetCamera(Camera arg_camera)
+    {
+        vCamera = arg_camera;
+    }
+
     /// <summary>
     ///     Get whether screenshot is taken
     /// </summary>
@@ -88,8 +94,8 @@ public class ScreenshotHandler : MonoBehaviour
             screenshotIndex++;
             RenderTexture.ReleaseTemporary(renderTexture);
             vCamera.targetTexture = null;
-
-            Debug.Log("Screenshot saved");
+            lastSavedPath = Application.dataPath + "/CameraSreenshot_00" + screenshotIndex + ".png";
+            Debug.Log("Screenshot saved at: " + lastSavedPath);
 
             isScreenshotTaken = true;
         }

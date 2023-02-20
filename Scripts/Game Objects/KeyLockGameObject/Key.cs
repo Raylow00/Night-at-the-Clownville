@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyGameObject
+public class Key
 {
     #region Private Fields
     private bool isKeyObtained;
@@ -13,7 +13,7 @@ public class KeyGameObject
     ///     Constructor
     ///     Sets isKeyObtained to false
     /// </summary>
-    public KeyGameObject()
+    public Key()
     {
         isKeyObtained = false;
     }

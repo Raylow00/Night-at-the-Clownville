@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockGameObjectManager : MonoBehaviour
+public class LockHandler : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private KeyLockStatusScriptableObject keyLockStatusSO;
@@ -11,13 +11,13 @@ public class LockGameObjectManager : MonoBehaviour
     #endregion
 
     #region Private Fields
-    private LockGameObject lockGameObject;
+    private Lock lockGameObject;
     #endregion
 
     #region Unity MonoBehaviour Methods
     void Start()
     {
-        lockGameObject = new LockGameObject();
+        lockGameObject = new Lock();
     }
     #endregion
 

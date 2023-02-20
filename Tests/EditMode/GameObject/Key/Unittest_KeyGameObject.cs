@@ -13,7 +13,7 @@ public class Unittest_KeyGameObject
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
 
-        KeyGameObject testKey = new KeyGameObject();
+        Key testKey = new Key();
 
         //<-------------------------------- Test Execution ------------------------------>//
 
@@ -27,7 +27,7 @@ public class Unittest_KeyGameObject
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
 
-        KeyGameObject testKey = new KeyGameObject();
+        Key testKey = new Key();
 
         //<-------------------------------- Test Execution ------------------------------>//
         testKey.ObtainKey();

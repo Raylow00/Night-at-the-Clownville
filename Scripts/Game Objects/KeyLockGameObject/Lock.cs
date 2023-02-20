@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockGameObject
+public class Lock
 {
     #region Private Fields
     private bool isLockOpened;
@@ -13,7 +13,7 @@ public class LockGameObject
     ///     Constructor
     ///     Sets isLockOpened to false
     /// </summary>
-    public LockGameObject()
+    public Lock()
     {
         isLockOpened = false;
     }

@@ -15,7 +15,7 @@ public class Unittest_Flashlight
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         GameObject testFlashlightGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Flashlight/Test Flashlight"));
-        Flashlight testFlashlight = testFlashlightGameObject.GetComponent<Flashlight>();
+        FlashlightHandler testFlashlight = testFlashlightGameObject.GetComponent<FlashlightHandler>();
         yield return null;
 
         //<-------------------------------- Test Execution ------------------------------>//
@@ -36,7 +36,7 @@ public class Unittest_Flashlight
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         GameObject testFlashlightGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/Flashlight/Test Flashlight"));
-        Flashlight testFlashlight = testFlashlightGameObject.GetComponent<Flashlight>();
+        FlashlightHandler testFlashlight = testFlashlightGameObject.GetComponent<FlashlightHandler>();
 
         //<-------------------------------- Test Execution ------------------------------>//
         float rechargeValue = Time.deltaTime * 1.3f;

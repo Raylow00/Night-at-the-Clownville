@@ -17,7 +17,7 @@ public class Unittest_LockGameObjectManager
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         testLockGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/KeyLock/Test_Lock_Game_Object"));
-        LockGameObjectManager testLockGameObjectManager = testLockGameObject.GetComponent<LockGameObjectManager>();
+        LockHandler testLockGameObjectManager = testLockGameObject.GetComponent<LockHandler>();
         KeyLockStatusScriptableObject keyLockStatusSO = testLockGameObjectManager.GetScriptableObject();
 
         yield return null;
@@ -39,7 +39,7 @@ public class Unittest_LockGameObjectManager
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         testLockGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/KeyLock/Test_Lock_Game_Object"));
-        LockGameObjectManager testLockGameObjectManager = testLockGameObject.GetComponent<LockGameObjectManager>();
+        LockHandler testLockGameObjectManager = testLockGameObject.GetComponent<LockHandler>();
         KeyLockStatusScriptableObject keyLockStatusSO = testLockGameObjectManager.GetScriptableObject();
 
         yield return null;
@@ -63,7 +63,7 @@ public class Unittest_LockGameObjectManager
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         testLockGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/KeyLock/Test_Lock_Game_Object"));
-        LockGameObjectManager testLockGameObjectManager = testLockGameObject.GetComponent<LockGameObjectManager>();
+        LockHandler testLockGameObjectManager = testLockGameObject.GetComponent<LockHandler>();
         KeyLockStatusScriptableObject keyLockStatusSO = testLockGameObjectManager.GetScriptableObject();
 
         yield return null;

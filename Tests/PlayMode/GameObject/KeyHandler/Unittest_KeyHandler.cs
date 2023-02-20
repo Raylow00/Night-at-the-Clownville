@@ -17,7 +17,7 @@ public class Unittest_KeyGameObjectManager
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         testKeyGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/KeyLock/Test_Key_Game_Object"));
-        KeyGameObjectManager testKeyGameObjectManager = testKeyGameObject.GetComponent<KeyGameObjectManager>();
+        KeyHandler testKeyGameObjectManager = testKeyGameObject.GetComponent<KeyHandler>();
         KeyLockStatusScriptableObject keyLockStatusSO = testKeyGameObjectManager.GetScriptableObject();
 
         yield return null;
@@ -39,7 +39,7 @@ public class Unittest_KeyGameObjectManager
         // Use yield to skip a frame.
         //<-------------------------------- Test Setup ---------------------------------->//
         testKeyGameObject = MonoBehaviour.Instantiate(Resources.Load<GameObject>("TestResources/PlayMode/GameObject/KeyLock/Test_Key_Game_Object"));
-        KeyGameObjectManager testKeyGameObjectManager = testKeyGameObject.GetComponent<KeyGameObjectManager>();
+        KeyHandler testKeyGameObjectManager = testKeyGameObject.GetComponent<KeyHandler>();
         KeyLockStatusScriptableObject keyLockStatusSO = testKeyGameObjectManager.GetScriptableObject();
 
         yield return null;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyGameObjectManager : MonoBehaviour
+public class KeyHandler : MonoBehaviour
 {
     #region Serialized Fields
     [SerializeField] private KeyLockStatusScriptableObject keyLockStatusSO;
@@ -10,13 +10,13 @@ public class KeyGameObjectManager : MonoBehaviour
     #endregion
 
     #region Private Fields
-    private KeyGameObject keyGameObject;
+    private Key keyGameObject;
     #endregion
 
     #region Unity MonoBehaviour Methods
     void Start()
     {
-        keyGameObject = new KeyGameObject();
+        keyGameObject = new Key();
     }
     #endregion
 

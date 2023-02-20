@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Flashlight : MonoBehaviour
+public class FlashlightHandler : MonoBehaviour
 {
     #region Serialized Fields
     [Header("Flashlight")]

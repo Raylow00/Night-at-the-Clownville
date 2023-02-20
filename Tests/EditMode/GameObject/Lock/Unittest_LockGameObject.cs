@@ -12,7 +12,7 @@ public class Unittest_LockGameObject
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
-        LockGameObject testLock = new LockGameObject();
+        Lock testLock = new Lock();
 
         //<-------------------------------- Test Execution ------------------------------>//
 
@@ -26,7 +26,7 @@ public class Unittest_LockGameObject
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
-        LockGameObject testLock = new LockGameObject();
+        Lock testLock = new Lock();
 
         //<-------------------------------- Test Execution ------------------------------>//
         testLock.OpenLock();
@@ -41,7 +41,7 @@ public class Unittest_LockGameObject
     {
         // Use the Assert class to test conditions
         //<-------------------------------- Test Setup ---------------------------------->//
-        LockGameObject testLock = new LockGameObject();
+        Lock testLock = new Lock();
 
         //<-------------------------------- Test Execution ------------------------------>//
         testLock.OpenLock();

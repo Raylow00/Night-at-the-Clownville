@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private VoidEvent onFlashlightRequestEvent;
     [SerializeField] private VoidEvent onPauseGameRequestEvent;
 
-    [SerializeField] private VoidEvent onInteractiveButtonPressRequestEvent;
+    [SerializeField] private BoolEvent onInteractiveButtonPressRequestEvent;
     [SerializeField] private VoidEvent onInteractiveButtonHoldRequestEvent;
     [SerializeField] private VoidEvent onInteractiveButtonCancelHoldRequestEvent;
 
@@ -82,7 +82,7 @@ public class InputManager : MonoBehaviour
         // Interactive button - Press / Hold
         gameplayControlsActions.PressInteractive.started += _ => PressInteractiveButton();
         gameplayControlsActions.PressInteractive.performed += _ => HoldInteractiveButton();
-        gameplayControlsActions.PressInteractive.canceled += _ => CancelHoldInteractiveButton();
+        gameplayControlsActions.PressInteractive.canceled += _ => ReleaseInteractiveButton();
     }
 
     private void MoveHorizontal(Vector2 arg_vector2Value)
@@ -90,9 +90,9 @@ public class InputManager : MonoBehaviour
         onHorizontalMovementInputRequestEvent.Raise(arg_vector2Value);
     }
 
-    private void CancelHoldInteractiveButton()
+    private void ReleaseInteractiveButton()
     {
-        onInteractiveButtonCancelHoldRequestEvent.Raise();
+        onInteractiveButtonPressRequestEvent.Raise(false);
     }
 
     private void HoldInteractiveButton()
@@ -102,7 +102,7 @@ public class InputManager : MonoBehaviour
 
     private void PressInteractiveButton()
     {
-        onInteractiveButtonPressRequestEvent.Raise();
+        onInteractiveButtonPressRequestEvent.Raise(true);
     }
 
     private void OnFlashlightPressed()

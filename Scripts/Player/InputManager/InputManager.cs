@@ -44,6 +44,17 @@ public class InputManager : MonoBehaviour
         gameplayControlsActions = playerController.GameplayControls;
 
         AssignActions();
+        Debug.Log("Assign actions done");
+    }
+
+    void OnEnable()
+    {
+        playerController.Enable();
+    }
+
+    void OnDestroy()
+    {
+        playerController.Disable();
     }
 
     private void AssignActions()
@@ -87,76 +98,91 @@ public class InputManager : MonoBehaviour
 
     private void MoveHorizontal(Vector2 arg_vector2Value)
     {
+        Debug.Log("Vector2 value: " + arg_vector2Value);
         onHorizontalMovementInputRequestEvent.Raise(arg_vector2Value);
     }
 
     private void ReleaseInteractiveButton()
     {
+        Debug.Log("Release Interactive Button");
         onInteractiveButtonPressRequestEvent.Raise(false);
     }
 
     private void HoldInteractiveButton()
     {
+        Debug.Log("Hold Interactive Button");
         onInteractiveButtonHoldRequestEvent.Raise();
     }
 
     private void PressInteractiveButton()
     {
+        Debug.Log("Press Interactive Button");
         onInteractiveButtonPressRequestEvent.Raise(true);
     }
 
     private void OnFlashlightPressed()
     {
+        Debug.Log("Flashlight requested");
         onFlashlightRequestEvent.Raise();
     }
 
     private void UseMap()
     {
+        Debug.Log("Map requested");
         onUseMapRequestEvent.Raise();
     }
 
     private void EquipCamera()
     {
+        Debug.Log("Camera requested");
         onEquipCameraRequestEvent.Raise();
     }
 
     private void InspectWeapon()
     {
+        Debug.Log("Inspect weapon requested");
         onWeaponInspectRequestEvent.Raise();
     }
 
     private void ReloadWeapon()
     {
+        Debug.Log("Reload weapon requested");
         onReloadRequestEvent.Raise();
     }
 
     private void EquipSkin()
     {
+        Debug.Log("Equip skin requested");
         onWeaponSkinEquipRequestEvent.Raise();
     }
 
     private void SwitchLastUsedWeapon()
     {
+        Debug.Log("Switch last used weapon requested");
         onSwitchLastUsedWeaponRequestEvent.Raise();
     }
 
     private void ToggleWeapon(int arg_value)
     {
+        Debug.Log("Toggle weapon requested: " + arg_value);
         onNumKeyRequestEvent.Raise(arg_value);
     }
 
     private void OnCrouchPressed()
     {
+        Debug.Log("Crouch requested");
         onCrouchRequestEvent.Raise();
     }
 
     private void OnJumpPressed()
     {
+        Debug.Log("Jump requested");
         onJumpRequestEvent.Raise();
     }
 
     private void OnPauseButtonPressed()
     {
+        Debug.Log("Pause button requested");
         onPauseGameRequestEvent.Raise();
     }
 }

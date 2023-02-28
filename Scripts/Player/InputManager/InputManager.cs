@@ -28,6 +28,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private VoidEvent onInteractiveButtonCancelHoldRequestEvent;
 
     [SerializeField] private VoidEvent onWeaponSkinEquipRequestEvent;
+    [SerializeField] private BoolEvent onShiftButtonPressEvent;
 
     #endregion
 
@@ -44,7 +45,18 @@ public class InputManager : MonoBehaviour
         gameplayControlsActions = playerController.GameplayControls;
 
         AssignActions();
-        Debug.Log("Assign actions done");
+    }
+
+    void Update()
+    {
+        if (Input.GetButton("Shift"))
+        {
+            onShiftButtonPressEvent.Raise(true);
+        }
+        else if (Input.GetButtonUp("Shift"))
+        {
+            onShiftButtonPressEvent.Raise(false);
+        }
     }
 
     void OnEnable()

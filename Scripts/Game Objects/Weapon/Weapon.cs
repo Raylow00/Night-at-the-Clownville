@@ -33,10 +33,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] private string clipOutClipName;
 
     [Header("Events")]
+    [SerializeField] private VoidEvent onWeaponEnableEvent;
+    [SerializeField] private VoidEvent onWeaponDisableEvent;
+
     [SerializeField] private VoidEvent onMeleeWeaponAttackEvent;
 
     [SerializeField] private VoidEvent onRaycastWeaponFireEvent;
-    [SerializeField] private VoidEvent onRaycastHitDetectedEvent;
+    [SerializeField] private VoidEvent onRaycastHitDetectEvent;
     [SerializeField] private VoidEvent onRaycastWeaponReloadEvent;
 
     [SerializeField] private VoidEvent onProjectileWeaponFireEvent;
@@ -61,7 +64,25 @@ public class Weapon : MonoBehaviour
         InitWeapon();    
     }
 
+    void OnEnable()
+    {
+        onCurrentAmmoChangeEvent.Raise(weaponSO.currentAmmoRound);
+        onCurrentAmmoZeroEvent.Raise(weaponSO.currentAmmoRound);
+        onAmmoRoundChangeEvent.Raise(weaponSO.maxBullets);
+        onWeaponEnableEvent.Raise();
+    }
+
+    void OnDisable()
+    {
+        onWeaponDisableEvent.Raise();    
+    }
+
     #region Public Methods
+    public WeaponScriptableObject GetWeaponScriptableObject()
+    {
+        return weaponSO;
+    }
+
     /// <summary>
     ///     Handles one-time firing of the weapon based on the weapon type : MELEE, RAYCAST, PROJECTILE
     ///     Melee weapon needs a Coroutine due to a delay when the impact is received, be it a knife or baseball
@@ -87,6 +108,9 @@ public class Weapon : MonoBehaviour
                 HandleProjectileHit();
                 
                 break;
+
+            default:
+                break;
         }
     }
 
@@ -106,6 +130,29 @@ public class Weapon : MonoBehaviour
             timeLastFired = Time.time;
 
             muzzleFlash.Stop();
+        }
+    }
+
+    public void ReloadWeapon()
+    {
+        switch (weaponSO.weaponType)
+        {
+            case WeaponType.RANGE_PROJECTILE:
+
+                onProjectileWeaponReloadEvent.Raise();
+
+                goto case WeaponType.RANGE_RAYCAST;
+
+            case WeaponType.RANGE_RAYCAST:
+
+                onRaycastWeaponReloadEvent.Raise();
+
+                HandleWeaponReload();
+
+                break;
+
+            default:
+                break;
         }
     }
     #endregion
@@ -156,7 +203,7 @@ public class Weapon : MonoBehaviour
             // spawn particles from object pooler for impact effect
             // spawn bullet holes
             // break objects
-            onRaycastHitDetectedEvent.Raise();
+            onRaycastHitDetectEvent.Raise();
 
             // Take damage from enemy
         }
@@ -188,7 +235,7 @@ public class Weapon : MonoBehaviour
                 // spawn particles from object pooler for impact effect
                 // spawn bullet holes
                 // break objects
-                onRaycastHitDetectedEvent.Raise();
+                onRaycastHitDetectEvent.Raise();
 
                 // Take damage from enemy
             }
@@ -260,6 +307,39 @@ public class Weapon : MonoBehaviour
 
         onProjectileWeaponReloadEvent.Raise();
         dummyProjectilePrefab.SetActive(true);
+    }
+
+    private void HandleWeaponReload()
+    {
+        // Reload calculation
+        // If the remaining bullets is more than enough to swap the entire magazine
+        int remainingAmmo = weaponSO.maxAmmoRound - weaponSO.currentAmmoRound;
+        if (weaponSO.maxBullets > 0 && weaponSO.maxBullets >= remainingAmmo)
+        {
+            weaponSO.currentAmmoRound += remainingAmmo;
+            currentAmmoRound = weaponSO.currentAmmoRound;
+            weaponSO.maxBullets -= remainingAmmo;
+
+            onCurrentAmmoChangeEvent.Raise(weaponSO.currentAmmoRound);
+            onAmmoRoundChangeEvent.Raise(weaponSO.maxBullets);
+        }
+        // If the remaining bullets are less than the magazine ammo
+        else if (weaponSO.maxBullets > 0 && weaponSO.maxBullets < remainingAmmo)
+        {
+            int reloadTimes;
+            reloadTimes = weaponSO.maxBullets;
+            weaponSO.currentAmmoRound += reloadTimes;
+            currentAmmoRound = weaponSO.currentAmmoRound;
+            weaponSO.maxBullets -= reloadTimes;
+
+            onCurrentAmmoChangeEvent.Raise(weaponSO.currentAmmoRound);
+            onAmmoRoundChangeEvent.Raise(weaponSO.maxBullets);
+        }
+        // If there are no remaining bullets
+        else if (weaponSO.maxBullets <= 0)
+        {
+            // Debug.Log("Unable to reload. Insufficient bullets");
+        }
     }
 
     /// <summary>

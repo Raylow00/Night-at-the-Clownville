@@ -93,8 +93,8 @@ public class InputManager : MonoBehaviour
         gameplayControlsActions.PauseAction.performed += _ => OnPauseButtonPressed();
         gameplayControlsActions.HorizontalMovement.performed += context => MoveHorizontal(context.ReadValue<Vector2>());
         gameplayControlsActions.Jump.performed += _ => OnJumpPressed();
-        gameplayControlsActions.MouseX.performed += context => mouseInput.x = context.ReadValue<float>();
-        gameplayControlsActions.MouseY.performed += context => mouseInput.y = context.ReadValue<float>();
+        gameplayControlsActions.MouseX.performed += context => MoveMouseX(context.ReadValue<float>());
+        gameplayControlsActions.MouseY.performed += context => MoveMouseY(context.ReadValue<float>());
         gameplayControlsActions.Crouch.performed += _ => OnCrouchPressed();
         gameplayControlsActions.Weapon1.performed += _ => ToggleWeapon(0);
         gameplayControlsActions.Weapon2.performed += _ => ToggleWeapon(1);
@@ -131,6 +131,16 @@ public class InputManager : MonoBehaviour
     {
         Debug.Log("Vector2 value: " + arg_vector2Value);
         onHorizontalMovementInputRequestEvent.Raise(arg_vector2Value);
+    }
+
+    private void MoveMouseX(float arg_mouseX)
+    {
+        onMouseInputXRequestEvent.Raise(arg_mouseX);
+    }
+
+    private void MoveMouseY(float arg_mouseY)
+    {
+        onMouseInputYRequestEvent.Raise(arg_mouseY);
     }
 
     private void ReleaseInteractiveButton()

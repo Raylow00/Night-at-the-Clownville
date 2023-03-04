@@ -19,12 +19,15 @@ public class CinemachinePOVExtension : CinemachineExtension
         SetFieldOfView();
     }
 
-    // This should be in PlayerInputManager since it only references the gameplaySettingsSO.mouseSensitivityX and Y
-    //public void ReceiveMouseInput(Vector2 arg_mouseInput)
-    //{
-    //    mouseX = arg_mouseInput.x * gameplaySettingsSO.mouseSensitivityX;
-    //    mouseY = arg_mouseInput.y * gameplaySettingsSO.mouseSensitivityY;
-    //}
+    public void ReceiveMouseInputX(float arg_mouseInputX)
+    {
+        mouseX = arg_mouseInputX * gameplaySettingsSO.mouseSensitivityX;
+    }
+
+    public void ReceiveMouseInputY(float arg_mouseInputY)
+    {
+        mouseY = arg_mouseInputY * gameplaySettingsSO.mouseSensitivityY;
+    }
 
     public void SetFieldOfView()
     {

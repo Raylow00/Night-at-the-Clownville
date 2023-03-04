@@ -99,6 +99,7 @@ public class WeaponManager : MonoBehaviour
     #region Private Methods
     private void InitWeapon()
     {
+        currentWeaponGO = availableWeapons[0].weaponGO;
         currentWeapon = availableWeapons[0].weaponGO.GetComponent<Weapon>();
     }
     #endregion

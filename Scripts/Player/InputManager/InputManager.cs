@@ -30,6 +30,10 @@ public class InputManager : MonoBehaviour
     [SerializeField] private VoidEvent onWeaponSkinEquipRequestEvent;
     [SerializeField] private BoolEvent onShiftButtonPressEvent;
 
+    // Mouse input
+    [SerializeField] private VoidEvent onFire1ButtonDownEvent;
+    [SerializeField] private VoidEvent onFire1ButtonEvent;
+
     #endregion
 
     #region Private Fields
@@ -56,6 +60,21 @@ public class InputManager : MonoBehaviour
         else if (Input.GetButtonUp("Shift"))
         {
             onShiftButtonPressEvent.Raise(false);
+        }
+
+        // GetButtonDown("Fire1") and GetButton("Fire1") are not mutually exclusive
+        // No need for else-if
+        // GetButtonDown will come first
+        // Then check for GetButton
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // Different use cases for Fire1 button checked in each class whether the object/component is active
+            onFire1ButtonDownEvent.Raise();
+        }
+        
+        if (Input.GetButton("Fire1"))
+        {
+            onFire1ButtonEvent.Raise();
         }
     }
 

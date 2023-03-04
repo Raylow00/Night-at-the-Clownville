@@ -78,6 +78,18 @@ public class Weapon : MonoBehaviour
     }
 
     #region Public Methods
+    /// <summary>
+    ///     Provides a function for animator to use and disable the weapon game object
+    /// </summary>
+    public void DisableWeapon()
+    {
+        gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    ///     Get the scriptable object for this specific weapon
+    /// </summary>
+    /// <returns></returns>
     public WeaponScriptableObject GetWeaponScriptableObject()
     {
         return weaponSO;
@@ -141,7 +153,9 @@ public class Weapon : MonoBehaviour
 
                 onProjectileWeaponReloadEvent.Raise();
 
-                goto case WeaponType.RANGE_RAYCAST;
+                HandleWeaponReload();
+
+                break;
 
             case WeaponType.RANGE_RAYCAST:
 
